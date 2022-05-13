@@ -51,7 +51,7 @@ export class Paciente extends ObservableAuditoria{
     }
 
     notify(): void {
-        this.observador.registrarActividad();
+        this.observador.registrar();
     }
 
     verHistorialMedico():void{
