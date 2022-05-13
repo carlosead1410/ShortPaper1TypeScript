@@ -11,6 +11,3 @@ paciente1.obtenerPlan();
 
 console.log(paciente1);
 
-console.log("Hola");
-
-console.log("Hola Carlos");
