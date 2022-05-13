@@ -1,4 +1,6 @@
+import { Paciente } from './Paciente';
 import { ObservableAuditoria, ObservadorRegistro } from './PatronObservadorAuditoria/ObservadorRegistro';
+/* IMPORTAR CITA PARA USARLA EN DOCTOR */
 
 //NOMBRABLE
 
@@ -71,6 +73,19 @@ class Doctor extends ObservableAuditoria {
 
     notify(): void {
         this.observador.registrar();
+    }
+
+    crearRegistroMedico(paciente: Paciente, cita: Cita){
+        
+    }
+
+    agendarCita(paciente: Paciente): Cita{
+        
+        return;
+    }
+
+    modificarHistoriaMedica(paciente: Paciente){
+
     }
 }
 
