@@ -1,11 +1,11 @@
 export interface ObservadorRegistro{
-    registrarActividad():void;
+    registrar():void;
 
 }
 
 export class Registro_Auditoria implements ObservadorRegistro{
     registro = [];
-    registrarActividad(): void{
+    registrar(): void{
         let registroA;
         this.registro.push(registroA);
     }
@@ -13,7 +13,7 @@ export class Registro_Auditoria implements ObservadorRegistro{
 
 export class Registro_Actividad implements ObservadorRegistro{
     registro = [];
-    registrarActividad(): void{
+    registrar(): void{
         let registroA;
         this.registro.push(registroA);
     }
