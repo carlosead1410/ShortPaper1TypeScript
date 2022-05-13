@@ -1,30 +1,30 @@
-import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
-import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
-import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
-import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "./PatronObservadorAuditoria/ObservadorRegistro";
-import { HistorialMedico } from "./ModuloHistoriaMedica/HistorialMedico";
+import { IVisitor, Pago } from "../ModuloSuscripccion/IVisitor";
+import { MetodoPago, Paypal, TDC, TipoPlan} from "../ModuloSuscripccion/MetodoPago";
+import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
+import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
+import { HistorialMedico } from "../ModuloHistoriaMedica/HistorialMedico";
 
 
 
 export class Paciente extends ObservableAuditoria{
-    nombre:string;
-    edad:number;
-    profesion: string;
-    telefonos: string[];
-    correo: string;
-    doc_id:number;
-    plan: Suscripcion;
+    private _nombre:string;
+    private _edad:number;
+    private _profesion: string;
+    private _telefonos: string[];
+    private _correo: string;
+    private _doc_id:number;
+    private _plan: Suscripcion;
 
-    historia: HistorialMedico;
+    private _historia: HistorialMedico;
 
     constructor(nombre:string, edad:number, profesion: string, telefonos:string[], correo: string, doc_id:number, o: ObservadorRegistro){
         super(o);
-        this.nombre = nombre;
-        this.edad = edad;
-        this.profesion = profesion;
-        this.telefonos = telefonos;
-        this.correo = correo;
-        this.doc_id = doc_id;        
+        this._nombre = nombre;
+        this._edad = edad;
+        this._profesion = profesion;
+        this._telefonos = telefonos;
+        this._correo = correo;
+        this._doc_id = doc_id;        
     }
 
 
@@ -35,15 +35,15 @@ export class Paciente extends ObservableAuditoria{
         suscripccion.agregarMetodo(metodo);
         suscripccion.actualizarFecha();
         suscripccion.actualizarStatus(StatusSuscripccion.Activa);
-        this.plan = suscripccion;
+        this._plan = suscripccion;
     }
 
     cancelarSuscripcion():void{
-        this.plan.actualizarStatus(StatusSuscripccion.Cancelada);
+        this._plan.actualizarStatus(StatusSuscripccion.Cancelada);
     }
 
     obtenerPlan():void{
-        this.plan.mostrarSuscripccion();
+        this._plan.mostrarSuscripccion();
     }
 
     add(o: ObservadorRegistro): void {
@@ -56,7 +56,7 @@ export class Paciente extends ObservableAuditoria{
     }
 
     verHistorialMedico():void{
-        this.historia.mostrarRegistro();
+        this._historia.mostrarRegistro();
     }
 }
 

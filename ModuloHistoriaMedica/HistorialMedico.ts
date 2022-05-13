@@ -6,16 +6,8 @@
 */ 
 
 export class RegistroMedico{
-    //private _paciente : Paciente;
-    //private _doctor : Doctor;
-    private _datos: object;
 
-    /*
-    constructor(paciente : Paciente, doctor: Doctor){
-        this._paciente =  paciente;
-        this._doctor = doctor;
-    }
-    */
+    private _datos: object;
 
     constructor(datos: object){
         this._datos = datos;
@@ -26,13 +18,6 @@ export class RegistroMedico{
     }
 }
 
-
-
-/* 
-    Clase Historial Medico
-    esta conformada por 1 o mas registros medicos
-
-*/
 
 export class HistorialMedico{
     private _registros: Array<RegistroMedico>

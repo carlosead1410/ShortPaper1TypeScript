@@ -1,9 +1,16 @@
-export class Registro_Historico {
+export class Registro_Auditoria {
     constructor() {
-        this.registro = [];
+        this.registro = new Array();
     }
-    registrarActividad() {
-        let registroA;
+    registrar(registroA) {
+        this.registro.push(registroA);
+    }
+}
+export class Registro_Actividad {
+    constructor() {
+        this.registro = new Array();
+    }
+    registrar(registroA) {
         this.registro.push(registroA);
     }
 }

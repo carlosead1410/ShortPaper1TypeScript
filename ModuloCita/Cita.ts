@@ -1,9 +1,9 @@
 
 import { RegistroMedico } from "../ModuloHistoriaMedica/HistorialMedico";
 import { FeedBack } from "./FeedBack";
-import { Paciente } from "../Paciente";
+import { Paciente } from "../ModuloUsuarios/Paciente";
 import { Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
-
+import { Doctor} from "../ModuloUsuarios/Doctor";
 
 
 // Status que puede tener la Cita
@@ -21,44 +21,50 @@ enum StatusCita{
 // Clase Cita
 // Falta colocarle la clase Doctor
 
-abstract class Cita{
-    hora: number;
-    dia: number;
+export abstract class Cita{
+    fecha: Date;
     status: StatusCita;
     feedback: FeedBack;
     paciente: Paciente;
-    doctor: void;
+    registroMedico: RegistroMedico;
 
-    constructor (paciente : Paciente, dia: number, hora: number){
-        let date: Date = new Date()
+    constructor (paciente : Paciente, fecha: Date){
         this.paciente = paciente;
-        this.dia = date.setDate(dia)
-        this.hora = date.setHours(hora)
+        this.fecha = fecha;
         this.status = StatusCita.pendiente;
     }
 
 
     abstract finalizarCita():void
 
+    abstract obtenerPaciente():Paciente
 }
 
 
 
-class Telemedicina extends (Cita){
+export class Telemedicina extends (Cita){
 
 
     finalizarCita(): void {
         console.log('Finalizada  virtual')
         this.status = StatusCita.finalizada;
     }
+
+    obtenerPaciente(): Paciente {
+        return this.paciente;
+    }
 }
 
 
-class Presencial extends(Cita){
+export class Presencial extends(Cita){
 
     finalizarCita(): void {
         console.log('Finalizada presencial')
         this.status = StatusCita.finalizada
+    }
+
+    obtenerPaciente(): Paciente {
+        return this.paciente;
     }
 }
 

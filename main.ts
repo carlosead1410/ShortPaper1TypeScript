@@ -1,4 +1,4 @@
-import { Paciente } from "./Paciente";
+import { Paciente } from "./ModuloUsuarios/Paciente";
 import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
