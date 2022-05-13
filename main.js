@@ -1,14 +1,16 @@
-import { Paciente } from "./ModuloUsuarios/Paciente";
-import { Paypal, TipoPlan } from "./ModuloSuscripccion/MetodoPago";
-import { Registro_Actividad } from "./PatronObservadorAuditoria/ObservadorRegistro";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Paciente_1 = require("./ModuloUsuarios/Paciente");
+var MetodoPago_1 = require("./ModuloSuscripccion/MetodoPago");
+var ObservadorRegistro_1 = require("./PatronObservadorAuditoria/ObservadorRegistro");
 //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE AUDITORIAS Y DE ACTIVIDADES DE LOS PACIENTES
-let registro_actividad = new Registro_Actividad();
-let paciente1 = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
+var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
+var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
 //METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA
-paciente1.suscribirse(new Paypal('arriaga1410@gmail.com', TipoPlan.mensual));
+paciente1.suscribirse(new MetodoPago_1.Paypal('arriaga1410@gmail.com', MetodoPago_1.TipoPlan.mensual));
 //MOSTRANDO SI EL PACIENTE TIENE SUSCRIPCCION
 paciente1.obtenerPlan();
 console.log("\n");
 console.log(paciente1);
-console.log("\n");
+console.log("Cristian de vaina caga el proyecto");
 // paciente1.verHistorialMedico();

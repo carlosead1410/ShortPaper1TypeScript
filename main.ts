@@ -5,8 +5,10 @@ import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripcci
 import { Registro_Actividad, Registro_Auditoria } from "./PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "./ModuloHistoriaMedica/HistorialMedico";
 
-//ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE AUDITORIAS Y DE ACTIVIDADES DE LOS PACIENTES
+//ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
 let registro_actividad: Registro_Actividad = new Registro_Actividad();
+let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();
+
 
 let paciente1: Paciente = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
 
