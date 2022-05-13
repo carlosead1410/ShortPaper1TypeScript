@@ -1,21 +1,14 @@
-"use strict";
-exports.__esModule = true;
-exports.ObservableAuditoria = exports.Registro_Historico = void 0;
-var Registro_Historico = /** @class */ (function () {
-    function Registro_Historico() {
+export class Registro_Historico {
+    constructor() {
         this.registro = [];
     }
-    Registro_Historico.prototype.registrarActividad = function () {
-        var registroA;
+    registrarActividad() {
+        let registroA;
         this.registro.push(registroA);
-    };
-    return Registro_Historico;
-}());
-exports.Registro_Historico = Registro_Historico;
-var ObservableAuditoria = /** @class */ (function () {
-    function ObservableAuditoria(observador) {
+    }
+}
+export class ObservableAuditoria {
+    constructor(observador) {
         this.observador = observador;
     }
-    return ObservableAuditoria;
-}());
-exports.ObservableAuditoria = ObservableAuditoria;
+}

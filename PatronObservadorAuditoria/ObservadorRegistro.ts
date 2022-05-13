@@ -1,20 +1,20 @@
 export interface ObservadorRegistro{
-    registrar():void;
+    registrar(registroA:any):void;
 
 }
 
 export class Registro_Auditoria implements ObservadorRegistro{
-    registro = [];
-    registrar(): void{
-        let registroA;
+    registro = new Array();
+    registrar(registroA:any): void{
+        
         this.registro.push(registroA);
     }
 }
 
 export class Registro_Actividad implements ObservadorRegistro{
-    registro = [];
-    registrar(): void{
-        let registroA;
+    registro = new Array();
+    registrar(registroA:any): void{
+    
         this.registro.push(registroA);
     }
 }
