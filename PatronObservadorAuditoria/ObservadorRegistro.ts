@@ -3,7 +3,15 @@ export interface ObservadorRegistro{
 
 }
 
-export class Registro_Historico implements ObservadorRegistro{
+export class Registro_Auditoria implements ObservadorRegistro{
+    registro = [];
+    registrarActividad(): void{
+        let registroA;
+        this.registro.push(registroA);
+    }
+}
+
+export class Registro_Actividad implements ObservadorRegistro{
     registro = [];
     registrarActividad(): void{
         let registroA;

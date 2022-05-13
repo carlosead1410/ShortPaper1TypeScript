@@ -1,7 +1,7 @@
 import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
-import { ObservableAuditoria, ObservadorRegistro, Registro_Historico } from "./PatronObservadorAuditoria/ObservadorRegistro";
+import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "./PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "./HistorialMedico";
 
 
@@ -52,6 +52,10 @@ export class Paciente extends ObservableAuditoria{
 
     notify(): void {
         this.observador.registrarActividad();
+    }
+
+    verHistorialMedico():void{
+        this.historia.mostrarRegistro();
     }
 }
 

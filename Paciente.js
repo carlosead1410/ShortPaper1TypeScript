@@ -52,6 +52,9 @@ var Paciente = /** @class */ (function (_super) {
     Paciente.prototype.notify = function () {
         this.observador.registrarActividad();
     };
+    Paciente.prototype.verHistorialMedico = function () {
+        this.historia.mostrarRegistro();
+    };
     return Paciente;
 }(ObservadorRegistro_1.ObservableAuditoria));
 exports.Paciente = Paciente;
