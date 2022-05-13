@@ -3,7 +3,7 @@ import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
 import { Registro_Historico } from "./PatronObservadorAuditoria/ObservadorRegistro";
-import { HistorialMedico } from "./HistorialMedico";
+import { HistorialMedico } from "./ModuloHistoriaMedica/HistorialMedico";
 
 //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE AUDITORIAS Y DE ACTIVIDADES DE LOS PACIENTES
 let registro_actividad: Registro_Historico = new Registro_Historico();
