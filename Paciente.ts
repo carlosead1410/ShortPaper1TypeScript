@@ -1,9 +1,12 @@
 import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
+import { ObservableAuditoria, ObservadorRegistro, Registro_Historico } from "./PatronObservadorAuditoria/ObservadorRegistro";
+import { HistorialMedico } from "./HistorialMedico";
 
 
-export class Paciente{
+
+export class Paciente extends ObservableAuditoria{
     nombre:string;
     edad:number;
     profesion: string;
@@ -12,8 +15,10 @@ export class Paciente{
     doc_id:number;
     plan: Suscripcion;
 
-    constructor(nombre:string, edad:number, profesion: string, telefonos:string[], correo: string, doc_id:number){
+    historia: HistorialMedico;
 
+    constructor(nombre:string, edad:number, profesion: string, telefonos:string[], correo: string, doc_id:number, o: ObservadorRegistro){
+        super(o);
         this.nombre = nombre;
         this.edad = edad;
         this.profesion = profesion;
@@ -39,6 +44,14 @@ export class Paciente{
 
     obtenerPlan():void{
         this.plan.mostrarSuscripccion();
+    }
+
+    add(o: ObservadorRegistro): void {
+        this.observador = this.observador;
+    }
+
+    notify(): void {
+        this.observador.registrarActividad();
     }
 }
 
