@@ -10,3 +10,5 @@ paciente1.suscribirse(new Paypal('arriaga1410@gmail.com', TipoPlan.mensual));
 paciente1.obtenerPlan();
 
 console.log(paciente1);
+
+console.log("Hola");
