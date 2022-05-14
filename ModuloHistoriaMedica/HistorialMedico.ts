@@ -1,16 +1,22 @@
 
+import { ObservadorNotificacion, ObservableNotificacion } from "../ModuloNotificaciones/PatronObservador";
 
 
-/*
-    Necesito la clase Paciente Y Doctor
-*/ 
-
-export class RegistroMedico{
+export class RegistroMedico extends ObservableNotificacion{
 
     private _datos: object;
 
-    constructor(datos: object){
+    constructor(datos: object, o: ObservadorNotificacion){
+        super(o)
         this._datos = datos;
+    }
+
+    add(o: ObservadorNotificacion): void {
+        this.observador = o;
+    }
+
+    notify(): void {
+        this.observador.notificar();
     }
 
     get datos(){

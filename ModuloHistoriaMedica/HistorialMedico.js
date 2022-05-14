@@ -1,37 +1,29 @@
-"use strict";
-/*
-    Necesito la clase Paciente Y Doctor
-*/
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.HistorialMedico = exports.RegistroMedico = void 0;
-var RegistroMedico = /** @class */ (function () {
-    function RegistroMedico(datos) {
+import { ObservableNotificacion } from "../ModuloNotificaciones/PatronObservador";
+export class RegistroMedico extends ObservableNotificacion {
+    constructor(datos, o) {
+        super(o);
         this._datos = datos;
     }
-    Object.defineProperty(RegistroMedico.prototype, "datos", {
-        get: function () {
-            return this._datos;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    return RegistroMedico;
-}());
-exports.RegistroMedico = RegistroMedico;
-var HistorialMedico = /** @class */ (function () {
-    function HistorialMedico() {
+    add(o) {
+        this.observador = o;
     }
-    HistorialMedico.prototype.mostrarRegistro = function () {
+    notify() {
+        this.observador.notificar();
+    }
+    get datos() {
+        return this._datos;
+    }
+}
+export class HistorialMedico {
+    mostrarRegistro() {
         console.log("****   SU HISTORIAL MEDICO    ****\n");
-        this._registros.forEach(function (e) {
+        this._registros.forEach(e => {
             console.log(e);
         });
         ;
         console.log("\n");
-    };
-    HistorialMedico.prototype.agregarRegistro = function (a) {
+    }
+    agregarRegistro(a) {
         this._registros.push(a);
-    };
-    return HistorialMedico;
-}());
-exports.HistorialMedico = HistorialMedico;
+    }
+}
