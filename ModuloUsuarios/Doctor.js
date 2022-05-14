@@ -105,9 +105,8 @@ var Doctor = /** @class */ (function (_super) {
     Doctor.prototype.add = function (o) {
         this.observador = this.observador;
     };
-    Doctor.prototype.notify = function () {
-        var registrar = [];
-        this.observador.registrar(registrar);
+    Doctor.prototype.notify = function (arreglo) {
+        this.observador.registrar(arreglo);
     };
     Doctor.prototype.addRegistroMed = function (registro, paciente) {
         var historia = paciente.obtenerHistorial();
@@ -115,13 +114,13 @@ var Doctor = /** @class */ (function (_super) {
         historia.mostrarRegistro();
     };
     Doctor.prototype.crearRegistroMedico = function (paciente, cita) {
-        this.notify();
         /*
             Se debe verificar si el paciente tiene o no tiene historia medica
             si no tiene debe ser creada
         */
         if (paciente._historia === undefined) {
             paciente._historia = new HistorialMedico_1.HistorialMedico();
+            this.notify([this.getNombre(), new Date(Date.now()).toLocaleString(), paciente.getNombre(), "Creó historia médica"]);
         }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(Cita_1.StatusCita.enCurso);
@@ -140,6 +139,7 @@ var Doctor = /** @class */ (function (_super) {
         cita.actualizarStatus(Cita_1.StatusCita.finalizada);
         var registro1 = new HistorialMedico_1.RegistroMedico(exMed, new Notificacion_1.NotificacionPush());
         this.addRegistroMed(registro1, paciente);
+        this.notify([this.getNombre(), new Date(Date.now()).toLocaleString(), paciente.getNombre(), "Creó registro médico"]);
     };
     Doctor.prototype.agendarCita = function (paciente, fecha, solicitud) {
         var notificacion = new Notificacion_1.SMS();

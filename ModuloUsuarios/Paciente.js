@@ -32,10 +32,13 @@ var Paciente = /** @class */ (function (_super) {
         _this._doc_id = doc_id;
         return _this;
     }
+    Paciente.prototype.getNombre = function () {
+        return this._nombre;
+    };
     Paciente.prototype.suscribirse = function (metodo) {
         console.log("Aqui el paciente iniciaria el proceso de suscripccion\n");
         var suscripccion = new Suscripccion_1.Suscripcion();
-        metodo.realizarPago(new IVisitor_1.Pago());
+        metodo.realizarPago(new IVisitor_1.PagoSuscripccion());
         suscripccion.agregarMetodo(metodo);
         suscripccion.actualizarFecha();
         suscripccion.actualizarStatus(Suscripccion_1.StatusSuscripccion.Activa);

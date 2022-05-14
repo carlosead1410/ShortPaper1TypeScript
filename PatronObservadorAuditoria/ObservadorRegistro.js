@@ -8,6 +8,14 @@ var Registro_Auditoria = /** @class */ (function () {
     Registro_Auditoria.prototype.registrar = function (registroA) {
         this.registro.push(registroA);
     };
+    Registro_Auditoria.prototype.mostrarRegistros = function () {
+        console.log("****   REGISTRO DE AUDITORIA   ****\n");
+        for (var _i = 0, _a = this.registro; _i < _a.length; _i++) {
+            var regist = _a[_i];
+            console.log(regist);
+            console.log("\n");
+        }
+    };
     return Registro_Auditoria;
 }());
 exports.Registro_Auditoria = Registro_Auditoria;
@@ -17,6 +25,14 @@ var Registro_Actividad = /** @class */ (function () {
     }
     Registro_Actividad.prototype.registrar = function (registroA) {
         this.registro.push(registroA);
+    };
+    Registro_Actividad.prototype.mostrarRegistros = function () {
+        console.log("****   REGISTRO DE ACTIVIDAD   ****\n");
+        for (var _i = 0, _a = this.registro; _i < _a.length; _i++) {
+            var regist = _a[_i];
+            console.log(regist);
+            console.log("\n");
+        }
     };
     return Registro_Actividad;
 }());

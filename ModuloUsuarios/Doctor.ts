@@ -127,7 +127,7 @@ export class Doctor extends ObservableAuditoria {
         */
         if (paciente._historia === undefined) {
             paciente._historia = new HistorialMedico();
-            this.notify([this.getNombre(),Date.now(),paciente.getNombre(),"Creó historia médica"])
+            this.notify([this.getNombre(),new Date(Date.now()).toLocaleString(),paciente.getNombre(),"Creó historia médica"])
         }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(StatusCita.enCurso);
@@ -146,7 +146,7 @@ export class Doctor extends ObservableAuditoria {
         cita.actualizarStatus(StatusCita.finalizada);
         let registro1 = new RegistroMedico(exMed, new NotificacionPush());
         this.addRegistroMed(registro1, paciente);       
-        this.notify([this.getNombre(),Date.now(),paciente.getNombre(),"Creó registro médico"])
+        this.notify([this.getNombre(),new Date(Date.now()).toLocaleString(),paciente.getNombre(),"Creó registro médico"])
     }
 
     agendarCita(paciente: Paciente, fecha: Date, solicitud: Solicitud): Cita {

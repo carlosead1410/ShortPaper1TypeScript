@@ -1,11 +1,11 @@
 "use strict";
 exports.__esModule = true;
-exports.Pago = void 0;
+exports.PagoSuscripccion = void 0;
 var MetodoPago_1 = require("./MetodoPago");
-var Pago = /** @class */ (function () {
-    function Pago() {
+var PagoSuscripccion = /** @class */ (function () {
+    function PagoSuscripccion() {
     }
-    Pago.prototype.visitTDC = function (tarjeta) {
+    PagoSuscripccion.prototype.visitTDC = function (tarjeta) {
         var multiplicador;
         if (tarjeta.modalidad == MetodoPago_1.TipoPlan.anual) {
             multiplicador = 10;
@@ -20,7 +20,7 @@ var Pago = /** @class */ (function () {
         console.log("Monto Pagado: ".concat(precio * multiplicador * 0.95, "\n"));
     };
     ;
-    Pago.prototype.visitPAYPAL = function (paypal) {
+    PagoSuscripccion.prototype.visitPAYPAL = function (paypal) {
         var multiplicador;
         if (paypal.modalidad == MetodoPago_1.TipoPlan.anual) {
             multiplicador = 10;
@@ -34,6 +34,6 @@ var Pago = /** @class */ (function () {
         console.log("Monto Pagado: ".concat(precio * multiplicador, "\n"));
     };
     ;
-    return Pago;
+    return PagoSuscripccion;
 }());
-exports.Pago = Pago;
+exports.PagoSuscripccion = PagoSuscripccion;
