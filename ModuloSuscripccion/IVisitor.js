@@ -6,6 +6,7 @@ var Pago = /** @class */ (function () {
     }
     Pago.prototype.visitTDC = function (tarjeta) {
         console.log(tarjeta);
+        console.log("Como su metodo de Pago fue por TDC se hara una recarga de un 5% al monto final\n");
         console.log("El pago por TDC se ha registrado con exito\n");
     };
     ;

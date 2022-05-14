@@ -9,6 +9,7 @@ export interface IVisitor{
 export class Pago implements IVisitor{
    visitTDC(tarjeta:TDC):void{
       console.log(tarjeta);
+      console.log("Como su metodo de Pago fue por TDC se hara una recarga de un 5% al monto final\n");
       console.log("El pago por TDC se ha registrado con exito\n");
    };
 

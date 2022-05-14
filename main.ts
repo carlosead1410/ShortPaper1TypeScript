@@ -33,4 +33,31 @@ function cu_suscripccionPaciente():void{
     console.log("\n");
 
 }
-cu_suscripccionPaciente();
+// cu_suscripccionPaciente();
+
+
+//CASO DE USO SUSCRIPCCION POR TDC Y ANUAL
+function cu_suscripccionPacienteTDC():void{
+    console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE A TRAVES DE UNA TDC Y ANUAL\n");
+
+    //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
+    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+
+    //Se crea al paciente
+    let paciente1: Paciente = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
+
+    // METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA (Aqui el paciente selecciona el metodo de pago de Paypal y lo va pagar mensualmente)
+    paciente1.suscribirse(new TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, TipoPlan.anual));
+
+    //SE MUESTRA LA SUSCRIPCCION DEL PACIENTE AL SISTEMA DE TELEMEDICINA (FECHA INICIO, FECHA FIN, METODO DE PAGO)
+    paciente1.obtenerPlan();
+
+    console.log("\n");
+
+    //IMPRIMO EL OBJETO PACIENTE
+    console.log(paciente1);
+
+    console.log("\n");
+
+}
+// cu_suscripccionPacienteTDC();
