@@ -3,6 +3,10 @@ import { MetodoPago, Paypal, TDC, TipoPlan} from "../ModuloSuscripccion/MetodoPa
 import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
 import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "../ModuloHistoriaMedica/HistorialMedico";
+import { Solicitud, TipoCita } from "../ModuloCita/Solicitud";
+import { Doctor } from "./Doctor";
+import { Cita, StatusCita } from "../ModuloCita/Cita";
+
 
 
 
@@ -42,8 +46,12 @@ export class Paciente extends ObservableAuditoria{
         this._plan.actualizarStatus(StatusSuscripccion.Cancelada);
     }
 
-    obtenerPlan():void{
+    MostrarPlan():void{
         this._plan.mostrarSuscripccion();
+    }
+
+    ObtenerPlan(): Suscripcion{
+        return this._plan;
     }
 
     add(o: ObservadorRegistro): void {
@@ -58,17 +66,20 @@ export class Paciente extends ObservableAuditoria{
     verHistorialMedico():void{
         this._historia.mostrarRegistro();
     }
+
+    solicitarCita(tipo: TipoCita, doctor: Doctor): Solicitud{
+        console.log('***PROCESO SOLICITUD DE CITA ***');
+        console.log(`Paciente: ${this._nombre}`);
+        console.log(`Doctor: ${doctor.getNombre()}`);
+        console.log(`Tipo Solicitud: ${tipo}`);
+        let solicitud: Solicitud = new Solicitud(tipo);
+        return solicitud;
+        //solicitud.notificarDoctor(doctor, this);
+    }
+
+    responderCita( cita: Cita, tipo: StatusCita){
+        cita.actualizarStatus(tipo);
+    }
+
+
 }
-
-// let pago1: MetodoPago = new Paypal("arriaga1410@gmail.com","anual");
-
-// let pago2: MetodoPago = new TDC("carlos","Mercantil",new Date("5/21/2025"), 12345567890, 123,"anual");
-
-// console.log(pago1);
-// console.log(pago1.realizarPago(new Pago()));
-
-
-// console.log(pago2);
-// console.log(pago2.realizarPago(new Pago()));
-
-

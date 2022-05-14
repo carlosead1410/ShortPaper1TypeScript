@@ -2,6 +2,7 @@ import { Paciente } from './Paciente';
 import { ObservableAuditoria, ObservadorRegistro } from '../PatronObservadorAuditoria/ObservadorRegistro';
 import { Cita, Telemedicina, Presencial } from '../ModuloCita/Cita'; 
 import { SMS} from '../ModuloNotificaciones/Notificacion' 
+import { Solicitud, TipoCita } from '../ModuloCita/Solicitud';
 /* IMPORTAR CITA PARA USARLA EN DOCTOR */
 
 //NOMBRABLE
@@ -76,6 +77,10 @@ export class Doctor extends ObservableAuditoria {
         this._consultorio = consultorio;
     }
 
+    getNombre():string{
+        return "Dr. " + this._nombre
+    }
+    
     add(o: ObservadorRegistro): void {
         this.observador = this.observador;
     }
@@ -86,13 +91,13 @@ export class Doctor extends ObservableAuditoria {
     }
 
     crearRegistroMedico(paciente: Paciente, cita: Cita){
-        
+        this.notify()
     }
 
-    agendarCita(paciente: Paciente, fecha:Date, tipo: string): Cita{
+    agendarCita(paciente: Paciente, fecha:Date, solicitud: Solicitud): Cita{
         let notificacion: SMS = new SMS() 
         let cita:Cita;
-        if (tipo == 'PRESENCIAL'){
+        if (solicitud.getTipo() == TipoCita.Presencial){
             cita = new Presencial(paciente, fecha, notificacion)
            
         }else{
