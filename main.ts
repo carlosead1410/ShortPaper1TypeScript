@@ -37,47 +37,6 @@ function cu_suscripccionPaciente():void{
 }
 // cu_suscripccionPaciente();
 
-// Caso de uso Doctor crea una Cita
-
-function cu_agendarCita(){
-    /*
-        En este punto el Paciente ya le paso Solicitud al Doctor para agendar una Cita
-        paciente1 fue el que realizo la solicitud al doctor1
-
-    */
-    
-    // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();  
-    
-    
-    let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
-    let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
-    let cita1: Cita;
-    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
-    // El paciente esta activo en la suscripcion
-    //Se agenda la cita, en la Solicitud se conoce el tipo de cita
-    
-    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
-
-    // Cita Creada 
-    console.log(cita1)
-
-    //Si el paciente acepta la cita 
-
-    paciente1.responderCita(cita1, StatusCita.aceptada)
-
-    console.log(cita1)
-
-
-}
-
-cu_agendarCita()
-
-
-
-
-
 //CASO DE USO SUSCRIPCCION POR TDC Y ANUAL (DIFERENTE METODO DE PAGO)
 function cu_suscripccionPacienteTDC():void{
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE A TRAVES DE UNA TDC Y ANUAL\n");
@@ -167,3 +126,41 @@ function cu_solicitarCitaCancelada():void{
 }
 
 cu_solicitarCitaCancelada();
+
+
+// Caso de uso Doctor crea una Cita
+
+function cu_agendarCita(){
+    /*
+        En este punto el Paciente ya le paso Solicitud al Doctor para agendar una Cita
+        paciente1 fue el que realizo la solicitud al doctor1
+
+    */
+    
+    // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
+    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();  
+    
+    
+    let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
+    let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
+    let cita1: Cita;
+    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
+    // El paciente esta activo en la suscripcion
+    //Se agenda la cita, en la Solicitud se conoce el tipo de cita
+    
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
+
+    // Cita Creada 
+    console.log(cita1)
+
+    //Si el paciente acepta la cita 
+
+    paciente1.responderCita(cita1, StatusCita.aceptada)
+
+    console.log(cita1)
+
+
+}
+
+cu_agendarCita()
