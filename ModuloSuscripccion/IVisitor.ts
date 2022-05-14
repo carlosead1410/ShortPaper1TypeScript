@@ -18,7 +18,7 @@ export class Pago implements IVisitor{
       console.log(tarjeta);
       console.log("Como su metodo de Pago fue por TDC se hara una recarga de un 5% al monto final\n");
       console.log("El pago por TDC se ha registrado con exito\n");
-      console.log(`Monto Pagado: ${precio*multiplicador * 0.05}\n`);
+      console.log(`Monto Pagado: ${precio*multiplicador * 0.95}\n`);
    };
 
    visitPAYPAL(paypal:Paypal):void{

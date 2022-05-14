@@ -31,10 +31,10 @@ Elaborado por: Subgrupo 1 - Code Rebels
 Al hacer un <span style="color:#FF9999;">git clone</span> del proyecto, se podra observar que se descargo un archivo llamado <span style="color:#710077;">"main.ts"</span> que es el archivo que tiene todas las funciones de las simulaciones de los casos de uso.
 Por Ejemplo: 
 	1. cu_suscripccionPaciente();
-Esta funcion representa la simulacion de cuando un Paciente se suscribe al sistema a traves de un metodo de pago que el haya elegido.
+Esta funcion representa la simulacion de cuando un Paciente se suscribe al sistema a traves de un metodo de pago que el haya elegido y de tipo MENSUAL.
 
 	2. cu_suscripccionPacienteTDC();
-Esta funcion representa la simulacion de cuando un Paciente se suscribe al mediante otro metodo de Pago, que en este caso es TDC, podra ver las diferencias de cuando se suscribe con Paypal.
+Esta funcion representa la simulacion de cuando un Paciente se suscribe al mediante otro metodo de Pago, que en este caso es TDC y de tipo ANUAL, podra ver las diferencias de cuando se suscribe con Paypal.
 
 	3. cu_solicitarCitaActiva();
 Esta funcion representa la simulacion del proceso en el que el paciente solicita una cita al doctor y su suscripccion esta activa en el sistema, Deberia observar como mensaje lo siguiente: "El Paciente si puede solicitar la cita ya que esta suscrito al sistema" </br>

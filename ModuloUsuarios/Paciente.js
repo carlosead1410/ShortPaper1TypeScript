@@ -72,6 +72,9 @@ var Paciente = /** @class */ (function (_super) {
     Paciente.prototype.responderCita = function (cita, tipo) {
         cita.actualizarStatus(tipo);
     };
+    Paciente.prototype.setSuscripccion = function (s) {
+        this._plan = s;
+    };
     return Paciente;
 }(ObservadorRegistro_1.ObservableAuditoria));
 exports.Paciente = Paciente;

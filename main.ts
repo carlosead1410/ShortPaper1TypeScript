@@ -90,7 +90,7 @@ function cu_solicitarCitaActiva():void{
     let solucitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1);
 
     solucitud.verificarSuscripccion(paciente1);
-
+    console.log("El Paciente si puede solicitar la cita ya que esta suscrito al sistema");
 }
 // cu_solicitarCitaActiva();
 
@@ -106,12 +106,16 @@ function cu_solicitarCitaCancelada():void{
 
     //Se crea al paciente
     let paciente1: Paciente = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
-    paciente1.suscribirse(new TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, TipoPlan.anual));
-    console.log("\n");
-    console.log("\n");
+    // paciente1.suscribirse(new TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, TipoPlan.anual));
+    // console.log("\n");
+    // console.log("\n");
 
+    let suscripccion: Suscripcion = new Suscripcion();
+    suscripccion.actualizarStatus(StatusSuscripccion.Cancelada);
+    paciente1.setSuscripccion(suscripccion);
+    console.log(paciente1);
+    
     //SE LE CANCELA LA SUSCRIPCCION AL PACIENTE
-    paciente1.ObtenerPlan().actualizarStatus(StatusSuscripccion.Cancelada);
 
     //SE OMITE LOS PROCEDIMIENTOS EN EL QUE EL PACIENTE BUSCA AL DOCTOR POR ESPECIALIDAD O UBICACION
     //SE OMITE LOS PROCEDIMIENTOS EN EL QUE EL PACIENTE SELECCIONA AL DOCTOR CON EL QUE QUIERE LA CITA
@@ -125,7 +129,7 @@ function cu_solicitarCitaCancelada():void{
     solicitud.verificarSuscripccion(paciente1);
 }
 
-// cu_solicitarCitaCancelada();
+ cu_solicitarCitaCancelada();
 
 
 // Caso de uso Doctor agendar Cita y Paciente Acepta la cita

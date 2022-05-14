@@ -81,5 +81,7 @@ export class Paciente extends ObservableAuditoria{
         cita.actualizarStatus(tipo);
     }
 
-
+    setSuscripccion(s: Suscripcion):void{
+        this._plan = s;
+    }
 }

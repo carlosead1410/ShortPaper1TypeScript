@@ -93,6 +93,17 @@ var Doctor = /** @class */ (function (_super) {
     };
     Doctor.prototype.crearRegistroMedico = function (paciente, cita) {
         this.notify();
+        /*
+            Se debe verificar si el paciente tiene o no tiene historia medica
+            si no tiene debe ser creada
+        */
+        //La Cita pasa a estar en curso
+        cita.actualizarStatus(Cita_1.StatusCita.enCurso);
+        /*
+            El metodo debe recibir el tipo de especializacion a la cual sera atendido
+            ya que el doctor puede tener varias especializaciones
+
+        */
     };
     Doctor.prototype.agendarCita = function (paciente, fecha, solicitud) {
         var notificacion = new Notificacion_1.SMS();

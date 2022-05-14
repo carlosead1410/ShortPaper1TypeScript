@@ -17,7 +17,7 @@ var Pago = /** @class */ (function () {
         console.log(tarjeta);
         console.log("Como su metodo de Pago fue por TDC se hara una recarga de un 5% al monto final\n");
         console.log("El pago por TDC se ha registrado con exito\n");
-        console.log("Monto Pagado: ".concat(precio * multiplicador * 0.05, "\n"));
+        console.log("Monto Pagado: ".concat(precio * multiplicador * 0.95, "\n"));
     };
     ;
     Pago.prototype.visitPAYPAL = function (paypal) {

@@ -60,6 +60,7 @@ function cu_solicitarCitaActiva() {
     //EL PACIENTE HACE LA SOLICITUD DE CITA
     var solucitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Teleconsulta, doctor1);
     solucitud.verificarSuscripccion(paciente1);
+    console.log("El Paciente si puede solicitar la cita ya que esta suscrito al sistema");
 }
 // cu_solicitarCitaActiva();
 //CASO DE USO PACIENTE SOLICITA CITA (SUSCRIPCCION CANCELADA O BLOQUEADA)
@@ -70,11 +71,14 @@ function cu_solicitarCitaCancelada() {
     var registro_Auditoria = new ObservadorRegistro_1.Registro_Auditoria();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
-    paciente1.suscribirse(new MetodoPago_1.TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, MetodoPago_1.TipoPlan.anual));
-    console.log("\n");
-    console.log("\n");
+    // paciente1.suscribirse(new TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, TipoPlan.anual));
+    // console.log("\n");
+    // console.log("\n");
+    var suscripccion = new Suscripccion_1.Suscripcion();
+    suscripccion.actualizarStatus(Suscripccion_1.StatusSuscripccion.Cancelada);
+    paciente1.setSuscripccion(suscripccion);
+    console.log(paciente1);
     //SE LE CANCELA LA SUSCRIPCCION AL PACIENTE
-    paciente1.ObtenerPlan().actualizarStatus(Suscripccion_1.StatusSuscripccion.Cancelada);
     //SE OMITE LOS PROCEDIMIENTOS EN EL QUE EL PACIENTE BUSCA AL DOCTOR POR ESPECIALIDAD O UBICACION
     //SE OMITE LOS PROCEDIMIENTOS EN EL QUE EL PACIENTE SELECCIONA AL DOCTOR CON EL QUE QUIERE LA CITA
     //Se crea al doctor
@@ -83,8 +87,8 @@ function cu_solicitarCitaCancelada() {
     var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1);
     solicitud.verificarSuscripccion(paciente1);
 }
-// cu_solicitarCitaCancelada();
-// Caso de uso Doctor crea una Cita
+cu_solicitarCitaCancelada();
+// Caso de uso Doctor agendar Cita y Paciente Acepta la cita
 function cu_agendarCita() {
     /*
         En este punto el Paciente ya le paso Solicitud al Doctor para agendar una Cita
@@ -102,9 +106,37 @@ function cu_agendarCita() {
     //Se agenda la cita, en la Solicitud se conoce el tipo de cita
     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
     // Cita Creada 
+    console.log('*********************************************************************');
+    console.log('********************DATOS DE LA CITA*********************************');
     console.log(cita1);
+    console.log('*********************************************************************');
     //Si el paciente acepta la cita 
     paciente1.responderCita(cita1, Cita_1.StatusCita.aceptada);
+    console.log('****************************************************************************');
+    console.log('********************DATOS DE LA CITA CREADA*********************************');
     console.log(cita1);
+    console.log('****************************************************************************');
+    //Si el paciente cancela la cita
+    paciente1.responderCita(cita1, Cita_1.StatusCita.cancelada);
+    console.log('****************************************************************************');
+    console.log('******************DATOS DE LA CITA CANCELADA********************************');
+    console.log(cita1);
+    console.log('****************************************************************************');
 }
-cu_agendarCita();
+//cu_agendarCita();
+//CASO DE USO CONSULTA MEDICA
+function cu_consulta() {
+    /*
+        En este punto el Paciente ya acepto y es el turno de ir a la cita
+    */
+    // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
+    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
+    var registro_auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
+    var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
+    var cita1;
+    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1);
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
+    paciente1.responderCita(cita1, Cita_1.StatusCita.aceptada);
+    doctor1.crearRegistroMedico(paciente1, cita1);
+}
