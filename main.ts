@@ -128,7 +128,7 @@ function cu_solicitarCitaCancelada():void{
 // cu_solicitarCitaCancelada();
 
 
-// Caso de uso Doctor agendar Cita y Paciente Acepta la cita
+// CASO DE USO DOCTOR AGENDA CITA DEL PACIENTE Y PACIENTE ACEPTA LA CITA
 
 function cu_agendarCita(){
     /*
@@ -166,7 +166,7 @@ function cu_agendarCita(){
     console.log('****************************************************************************');
 
 
-    //Si el paciente cancela la cita
+    //Si el paciente cancela la cita flujo alterno
     paciente1.responderCita(cita1, StatusCita.cancelada);
     
     console.log('****************************************************************************');
@@ -201,3 +201,60 @@ function cu_consulta(){
      doctor1.crearRegistroMedico(paciente1, cita1)
 
 }
+
+
+// CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
+function cu_procesoCompletoCita(){
+
+    //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
+    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+    let registro_Auditoria: Registro_Auditoria = new Registro_Auditoria();
+
+    //Se crea al paciente
+    let paciente1: Paciente = new Paciente('Maria Puentes', 65, 'Administradora', ['1', '2', '3'], 'maria@gmail.com', 4545, registro_actividad);
+
+    // METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA (Aqui el paciente selecciona el metodo de pago de TDC y lo va pagar anualmente)
+    paciente1.suscribirse(new TDC('Maria P', 'Bank of America', new Date('2024-05-24'), 12345678, 5232, TipoPlan.anual));
+
+    //SE MUESTRA LA SUSCRIPCCION DEL PACIENTE AL SISTEMA DE TELEMEDICINA (FECHA INICIO, FECHA FIN, METODO DE PAGO)
+    console.log('*********************************************************************');
+    console.log('********************SUSCRIPCION**************************************');
+    paciente1.MostrarPlan();
+    console.log('*********************************************************************');
+    console.log('\n');
+
+    //Se crea al doctor
+    let doctor1 = new Doctor("Rafael Romero", [new Cardiologo(), new Peidatra()], new Ubicacion("Colombia", "Antoquia", "Medillin"), registro_Auditoria);
+
+    //EL PACIENTE HACE LA SOLICITUD DE CITA
+    let solicitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1);
+    //SE VERIFICA SI EL CLIENTE ESTA ACTIVO
+    solicitud.verificarSuscripccion(paciente1);
+    console.log('*********************************************************************');
+    console.log('********************SOLICITUD****************************************');
+    console.log(solicitud);
+    console.log('*********************************************************************');
+    console.log('\n');
+
+    // LUEGO DEL DOCTOR QUE DOCTOR RECIBE LA SOLICITUD EL DOCTOR AGENDA LA CITA
+    let cita1: Cita;
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
+
+    // SE AGENDA LA CITA 
+    console.log('*********************************************************************');
+    console.log('********************DATOS DE LA CITA*********************************');
+    console.log(cita1);
+    console.log('*********************************************************************');
+    console.log('\n');
+    
+    // EL PACIENTE LA ACEPTA  
+    paciente1.responderCita(cita1, StatusCita.aceptada);
+
+    console.log('****************************************************************************');
+    console.log('********************DATOS DE LA CITA ACEPTADA*********************************');
+    console.log(cita1);
+    console.log('****************************************************************************');
+    console.log('\n');
+}
+
+cu_procesoCompletoCita()
