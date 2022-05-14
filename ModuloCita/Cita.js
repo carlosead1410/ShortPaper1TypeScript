@@ -1,5 +1,4 @@
-import { Paciente } from "../Paciente";
-import { Registro_Historico } from "../PatronObservadorAuditoria/ObservadorRegistro";
+import { ObservableNotificacion } from "../ModuloNotificaciones/PatronObservador";
 // Status que puede tener la Cita
 var StatusCita;
 (function (StatusCita) {
@@ -11,29 +10,41 @@ var StatusCita;
 })(StatusCita || (StatusCita = {}));
 // Clase Cita
 // Falta colocarle la clase Doctor
-class Cita {
-    constructor(paciente, dia, hora) {
-        let date = new Date();
+export class Cita extends ObservableNotificacion {
+    constructor(paciente, fecha, o) {
+        super(o);
         this.paciente = paciente;
-        this.dia = date.setDate(dia);
-        this.hora = date.setHours(hora);
+        this.fecha = fecha;
         this.status = StatusCita.pendiente;
     }
 }
-class Telemedicina extends (Cita) {
+export class Telemedicina extends (Cita) {
     finalizarCita() {
         console.log('Finalizada  virtual');
         this.status = StatusCita.finalizada;
     }
+    obtenerPaciente() {
+        return this.paciente;
+    }
+    add(o) {
+        this.observador = o;
+    }
+    notify() {
+        this.observador.notificar();
+    }
 }
-class Presencial extends (Cita) {
+export class Presencial extends (Cita) {
     finalizarCita() {
         console.log('Finalizada presencial');
         this.status = StatusCita.finalizada;
     }
+    obtenerPaciente() {
+        return this.paciente;
+    }
+    add(o) {
+        this.observador = o;
+    }
+    notify() {
+        this.observador.notificar();
+    }
 }
-let registro_actividad = new Registro_Historico();
-let paciente1 = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
-let cita = new Telemedicina(paciente1, 25, 8);
-console.log(paciente1);
-console.log(cita);
