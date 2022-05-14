@@ -1,4 +1,4 @@
-import { IVisitor, Pago } from "../ModuloSuscripccion/IVisitor";
+import { IVisitor, PagoSuscripccion } from "../ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "../ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
 import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
@@ -35,7 +35,7 @@ export class Paciente extends ObservableAuditoria{
     suscribirse( metodo: MetodoPago,):void{
         console.log("Aqui el paciente iniciaria el proceso de suscripccion\n");
         let suscripccion = new Suscripcion();
-        metodo.realizarPago(new Pago());
+        metodo.realizarPago(new PagoSuscripccion());
         suscripccion.agregarMetodo(metodo);
         suscripccion.actualizarFecha();
         suscripccion.actualizarStatus(StatusSuscripccion.Activa);

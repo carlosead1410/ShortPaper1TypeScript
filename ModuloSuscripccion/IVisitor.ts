@@ -2,11 +2,11 @@
 import { Paypal, TDC, MetodoPago, TipoPlan } from "./MetodoPago";
 //CREACION DE LA INTERFAZ VISITOR
 export interface IVisitor{
-    visitTDC(tarjeta:TDC):void;
-    visitPAYPAL(paypal: Paypal):void;
+   visitTDC(tarjeta:TDC):void;
+   visitPAYPAL(paypal: Paypal):void;
 }
 
-export class Pago implements IVisitor{
+export class PagoSuscripccion implements IVisitor{
    visitTDC(tarjeta:TDC):void{
       let multiplicador;
       if (tarjeta.modalidad == TipoPlan.anual){

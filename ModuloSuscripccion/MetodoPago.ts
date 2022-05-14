@@ -1,4 +1,4 @@
-import { IVisitor, Pago } from "./IVisitor";
+import { IVisitor, PagoSuscripccion } from "./IVisitor";
 
 export enum TipoPlan{
     mensual = "MENSUAL",

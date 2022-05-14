@@ -1,5 +1,5 @@
 import { Paciente } from "./ModuloUsuarios/Paciente";
-import { IVisitor, Pago } from "./ModuloSuscripccion/IVisitor";
+import { IVisitor, PagoSuscripccion } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
 import { Registro_Actividad, Registro_Auditoria } from "./PatronObservadorAuditoria/ObservadorRegistro";
