@@ -128,7 +128,7 @@ function cu_solicitarCitaCancelada():void{
 // cu_solicitarCitaCancelada();
 
 
-// Caso de uso Doctor crea una Cita
+// Caso de uso Doctor agendar Cita y Paciente Acepta la cita
 
 function cu_agendarCita(){
     /*
@@ -152,15 +152,52 @@ function cu_agendarCita(){
     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
 
     // Cita Creada 
-    console.log(cita1)
-
+    console.log('*********************************************************************');
+    console.log('********************DATOS DE LA CITA*********************************');
+    console.log(cita1);
+    console.log('*********************************************************************');
+    
     //Si el paciente acepta la cita 
+    paciente1.responderCita(cita1, StatusCita.aceptada);
 
-    paciente1.responderCita(cita1, StatusCita.aceptada)
+    console.log('****************************************************************************');
+    console.log('********************DATOS DE LA CITA CREADA*********************************');
+    console.log(cita1);
+    console.log('****************************************************************************');
 
-    console.log(cita1)
 
+    //Si el paciente cancela la cita
+    paciente1.responderCita(cita1, StatusCita.cancelada);
+    
+    console.log('****************************************************************************');
+    console.log('******************DATOS DE LA CITA CANCELADA********************************');
+    console.log(cita1);
+    console.log('****************************************************************************');
 
 }
 
-cu_agendarCita()
+//cu_agendarCita();
+
+//CASO DE USO CONSULTA MEDICA
+function cu_consulta(){
+    /*
+        En este punto el Paciente ya acepto y es el turno de ir a la cita
+    */
+     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
+     let registro_actividad: Registro_Actividad = new Registro_Actividad();
+     let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();  
+     
+     
+     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
+     let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
+     let cita1: Cita;
+     let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
+     
+     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
+ 
+      
+     paciente1.responderCita(cita1, StatusCita.aceptada);
+
+     doctor1.crearRegistroMedico(paciente1, cita1)
+
+}

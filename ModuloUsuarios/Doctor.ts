@@ -1,6 +1,6 @@
 import { Paciente } from './Paciente';
 import { ObservableAuditoria, ObservadorRegistro } from '../PatronObservadorAuditoria/ObservadorRegistro';
-import { Cita, Telemedicina, Presencial } from '../ModuloCita/Cita'; 
+import { Cita, Telemedicina, Presencial, StatusCita } from '../ModuloCita/Cita'; 
 import { SMS} from '../ModuloNotificaciones/Notificacion' 
 import { Solicitud, TipoCita } from '../ModuloCita/Solicitud';
 /* IMPORTAR CITA PARA USARLA EN DOCTOR */
@@ -92,6 +92,17 @@ export class Doctor extends ObservableAuditoria {
 
     crearRegistroMedico(paciente: Paciente, cita: Cita){
         this.notify()
+        /*
+            Se debe verificar si el paciente tiene o no tiene historia medica 
+            si no tiene debe ser creada
+        */
+        //La Cita pasa a estar en curso
+        cita.actualizarStatus(StatusCita.enCurso)
+        /*
+            El metodo debe recibir el tipo de especializacion a la cual sera atendido 
+            ya que el doctor puede tener varias especializaciones
+
+        */
     }
 
     agendarCita(paciente: Paciente, fecha:Date, solicitud: Solicitud): Cita{
