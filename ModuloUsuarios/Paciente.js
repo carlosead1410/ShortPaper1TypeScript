@@ -60,12 +60,14 @@ var Paciente = /** @class */ (function (_super) {
     Paciente.prototype.verHistorialMedico = function () {
         this._historia.mostrarRegistro();
     };
-    Paciente.prototype.solicitarCita = function (tipo, doctor) {
+    Paciente.prototype.solicitarCita = function (tipo, doctor, especialidad) {
         console.log('***PROCESO SOLICITUD DE CITA ***');
         console.log("Paciente: ".concat(this._nombre));
         console.log("Doctor: ".concat(doctor.getNombre()));
+        console.log("Doctor: ".concat(especialidad.getNombre()));
         console.log("Tipo Solicitud: ".concat(tipo));
-        var solicitud = new Solicitud_1.Solicitud(tipo);
+        console.log();
+        var solicitud = new Solicitud_1.Solicitud(tipo, especialidad);
         return solicitud;
         //solicitud.notificarDoctor(doctor, this);
     };

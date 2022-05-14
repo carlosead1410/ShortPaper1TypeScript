@@ -24,18 +24,21 @@ export class Solicitud{
         return this._especialidad;
     }
 
-    verificarEspecialidad(doctor : Doctor): void{
-        console.log('ENTRO VERIFICAR')
-        doctor.getEspecializaciones().forEach( (e) => {
-            console.log('ITERADOR')
-            if (e == this._especialidad){
-                console.log('Entro')
-                return ;
+    verificarEspecialidad(doctor : Doctor): boolean{
+        let especializaciones = doctor.getEspecializaciones();
+        let especialidad: Especialidad;
 
+        if (especializaciones.length == 0){
+            throw new Error('El doctor no posee esta especialidad');
+            return false;
+        }
+        for (let especialidad of especializaciones){
+            if (especialidad.getNombre() == this._especialidad.getNombre()){
+                return true;
             }
-        })
-        console.log('NO ENTRO')
+        }
         throw new Error('El doctor no posee esta especialidad');
+        return false;
     }
 
     verificarSuscripccion(paciente: Paciente):void{

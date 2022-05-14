@@ -84,6 +84,9 @@ var Doctor = /** @class */ (function (_super) {
     Doctor.prototype.getNombre = function () {
         return "Dr. " + this._nombre;
     };
+    Doctor.prototype.getEspecializaciones = function () {
+        return this._especializaciones;
+    };
     Doctor.prototype.add = function (o) {
         this.observador = this.observador;
     };
@@ -109,10 +112,10 @@ var Doctor = /** @class */ (function (_super) {
         var notificacion = new Notificacion_1.SMS();
         var cita;
         if (solicitud.getTipo() == Solicitud_1.TipoCita.Presencial) {
-            cita = new Cita_1.Presencial(paciente, fecha, notificacion);
+            cita = new Cita_1.Presencial(paciente, fecha, solicitud.getEspecialidad(), notificacion);
         }
         else {
-            cita = new Cita_1.Telemedicina(paciente, fecha, notificacion);
+            cita = new Cita_1.Telemedicina(paciente, fecha, solicitud.getEspecialidad(), notificacion);
         }
         this._historialCitas.push(cita);
         return cita;

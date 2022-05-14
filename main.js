@@ -58,7 +58,7 @@ function cu_solicitarCitaActiva() {
     //Se crea al doctor
     var doctor1 = new Doctor_1.Doctor("Eduardo Damiano", [new Doctor_1.Cardiologo(), new Doctor_1.Peidatra()], new Doctor_1.Ubicacion("Venezuela", "Dto Capital", "Caracas"), registro_Auditoria);
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    var solucitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Teleconsulta, doctor1);
+    var solucitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Teleconsulta, doctor1, new Doctor_1.Peidatra());
     solucitud.verificarSuscripccion(paciente1);
     console.log("El Paciente si puede solicitar la cita ya que esta suscrito al sistema");
 }
@@ -84,7 +84,7 @@ function cu_solicitarCitaCancelada() {
     //Se crea al doctor
     var doctor1 = new Doctor_1.Doctor("Eduardo Damiano", [new Doctor_1.Cardiologo(), new Doctor_1.Peidatra()], new Doctor_1.Ubicacion("Venezuela", "Dto Capital", "Caracas"), registro_Auditoria);
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1);
+    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1, new Doctor_1.Peidatra());
     solicitud.verificarSuscripccion(paciente1);
 }
 //  cu_solicitarCitaCancelada();
@@ -101,7 +101,7 @@ function cu_agendarCita() {
     var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     var cita1;
-    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1);
+    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1, new Doctor_1.Cardiologo());
     // El paciente esta activo en la suscripcion
     //Se agenda la cita, en la Solicitud se conoce el tipo de cita
     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
@@ -123,7 +123,7 @@ function cu_agendarCita() {
     console.log(cita1);
     console.log('****************************************************************************');
 }
-//cu_agendarCita();
+// cu_agendarCita();
 //CASO DE USO CONSULTA MEDICA
 function cu_consulta() {
     /*
@@ -135,7 +135,7 @@ function cu_consulta() {
     var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     var cita1;
-    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1);
+    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1, new Doctor_1.Cardiologo());
     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
     paciente1.responderCita(cita1, Cita_1.StatusCita.aceptada);
     doctor1.crearRegistroMedico(paciente1, cita1);
@@ -158,12 +158,16 @@ function cu_procesoCompletoCita() {
     //Se crea al doctor
     var doctor1 = new Doctor_1.Doctor("Rafael Romero", [new Doctor_1.Cardiologo(), new Doctor_1.Peidatra()], new Doctor_1.Ubicacion("Colombia", "Antoquia", "Medillin"), registro_Auditoria);
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Teleconsulta, doctor1);
+    var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Teleconsulta, doctor1, new Doctor_1.Cardiologo());
     console.log('\n');
     console.log('\n');
     console.log('*******SE VERIFICA LA SUSCRIPCCION DEL PACIENTE*******');
     //SE VERIFICA SI EL CLIENTE ESTA ACTIVO    
     solicitud.verificarSuscripccion(paciente1);
+    //SE VERIFICA QUE LA ESPECIALIDAD QUE ESTE SOLICITANDO EL PACIENTE LA POSEA EL DOCTOR
+    console.log('*******SE VERIFICA LA ESPECIALIDAD DEL DOCTOR*******');
+    solicitud.verificarEspecialidad(doctor1);
+    console.log('\n');
     console.log('Puede solicitar la cita');
     console.log('\n');
     console.log('*********************************************************************');

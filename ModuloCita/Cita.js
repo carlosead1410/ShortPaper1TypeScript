@@ -30,10 +30,11 @@ var StatusCita;
 // Falta colocarle la clase Doctor
 var Cita = /** @class */ (function (_super) {
     __extends(Cita, _super);
-    function Cita(paciente, fecha, o) {
+    function Cita(paciente, fecha, especialidad, o) {
         var _this = _super.call(this, o) || this;
         _this.paciente = paciente;
         _this.fecha = fecha;
+        _this.especialidad = especialidad;
         _this.status = StatusCita.pendiente;
         return _this;
     }
