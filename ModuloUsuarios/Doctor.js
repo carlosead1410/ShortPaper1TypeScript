@@ -77,6 +77,9 @@ var Doctor = /** @class */ (function (_super) {
         _this._consultorio = consultorio;
         return _this;
     }
+    Doctor.prototype.getNombre = function () {
+        return "Dr. " + this._nombre;
+    };
     Doctor.prototype.add = function (o) {
         this.observador = this.observador;
     };
@@ -87,7 +90,7 @@ var Doctor = /** @class */ (function (_super) {
     Doctor.prototype.crearRegistroMedico = function (paciente, cita) {
         this.notify();
     };
-    Doctor.prototype.agendarCita = function (paciente, fecha) {
+    Doctor.prototype.agendarCita = function (paciente) {
         /*
         let cita = new Telemedicina(paciente,fecha);
         this._historialCitas.push(cita)

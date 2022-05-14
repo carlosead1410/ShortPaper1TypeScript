@@ -43,8 +43,11 @@ var Paciente = /** @class */ (function (_super) {
     Paciente.prototype.cancelarSuscripcion = function () {
         this._plan.actualizarStatus(Suscripccion_1.StatusSuscripccion.Cancelada);
     };
-    Paciente.prototype.obtenerPlan = function () {
+    Paciente.prototype.MostrarPlan = function () {
         this._plan.mostrarSuscripccion();
+    };
+    Paciente.prototype.ObtenerPlan = function () {
+        return this._plan;
     };
     Paciente.prototype.add = function (o) {
         this.observador = this.observador;
@@ -55,6 +58,13 @@ var Paciente = /** @class */ (function (_super) {
     };
     Paciente.prototype.verHistorialMedico = function () {
         this._historia.mostrarRegistro();
+    };
+    Paciente.prototype.solicitarCita = function (solicitud, doctor) {
+        console.log('***PROCESO SOLICITUD DE CITA ***');
+        console.log("Paciente: ".concat(this._nombre));
+        console.log("Doctor: ".concat(doctor.getNombre()));
+        console.log("Tipo Solicitud: ".concat(solicitud.getTipo()));
+        solicitud.notificarDoctor(doctor, this);
     };
     return Paciente;
 }(ObservadorRegistro_1.ObservableAuditoria));

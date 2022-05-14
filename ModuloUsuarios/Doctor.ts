@@ -76,6 +76,10 @@ export class Doctor extends ObservableAuditoria {
         this._consultorio = consultorio;
     }
 
+    getNombre():string{
+        return "Dr. " + this._nombre
+    }
+    
     add(o: ObservadorRegistro): void {
         this.observador = this.observador;
     }
@@ -89,7 +93,7 @@ export class Doctor extends ObservableAuditoria {
         this.notify()
     }
 
-    agendarCita(paciente: Paciente, fecha:Date): void{
+    agendarCita(paciente: Paciente): void{
         /*
         let cita = new Telemedicina(paciente,fecha);
         this._historialCitas.push(cita)

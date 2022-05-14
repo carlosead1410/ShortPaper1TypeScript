@@ -3,6 +3,9 @@ import { MetodoPago, Paypal, TDC, TipoPlan} from "../ModuloSuscripccion/MetodoPa
 import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
 import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "../ModuloHistoriaMedica/HistorialMedico";
+import { Solicitud } from "../ModuloCita/Solicitud";
+import { Doctor } from "./Doctor";
+
 
 
 
@@ -42,8 +45,12 @@ export class Paciente extends ObservableAuditoria{
         this._plan.actualizarStatus(StatusSuscripccion.Cancelada);
     }
 
-    obtenerPlan():void{
+    MostrarPlan():void{
         this._plan.mostrarSuscripccion();
+    }
+
+    ObtenerPlan(): Suscripcion{
+        return this._plan;
     }
 
     add(o: ObservadorRegistro): void {
@@ -57,6 +64,15 @@ export class Paciente extends ObservableAuditoria{
 
     verHistorialMedico():void{
         this._historia.mostrarRegistro();
+    }
+
+    solicitarCita(solicitud: Solicitud, doctor: Doctor){
+        console.log('***PROCESO SOLICITUD DE CITA ***');
+        console.log(`Paciente: ${this._nombre}`);
+        console.log(`Doctor: ${doctor.getNombre()}`);
+        console.log(`Tipo Solicitud: ${solicitud.getTipo()}`)
+
+        solicitud.notificarDoctor(doctor, this);
     }
 }
 
