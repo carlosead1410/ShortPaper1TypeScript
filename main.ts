@@ -203,6 +203,7 @@ function cu_consulta() {
     paciente1.responderCita(cita1, StatusCita.aceptada);
 
     doctor1.crearRegistroMedico(paciente1, cita1)
+    registro_auditoria.mostrarRegistros();
 }
 cu_consulta();
 

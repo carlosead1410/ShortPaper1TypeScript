@@ -31,6 +31,9 @@ export class Paciente extends ObservableAuditoria {
         this._doc_id = doc_id;
     }
 
+    getNombre(){
+        return this._nombre;
+    }
 
     suscribirse(metodo: MetodoPago,): void {
         console.log("Aqui el paciente iniciaria el proceso de suscripccion\n");

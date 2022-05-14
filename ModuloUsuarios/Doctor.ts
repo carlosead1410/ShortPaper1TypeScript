@@ -109,9 +109,8 @@ export class Doctor extends ObservableAuditoria {
         this.observador = this.observador;
     }
 
-    notify(): void {
-        let registrar: any[] = [];
-        this.observador.registrar(registrar);
+    notify(arreglo: Array<any>): void {
+        this.observador.registrar(arreglo);
     }
 
     addRegistroMed(registro: RegistroMedico, paciente: Paciente) {
@@ -121,13 +120,14 @@ export class Doctor extends ObservableAuditoria {
     }
 
     crearRegistroMedico(paciente: Paciente, cita: Cita) {
-        this.notify()
+        
         /*
             Se debe verificar si el paciente tiene o no tiene historia medica 
             si no tiene debe ser creada
         */
         if (paciente._historia === undefined) {
             paciente._historia = new HistorialMedico();
+            this.notify([this.getNombre(),Date.now(),paciente.getNombre(),"Creó historia médica"])
         }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(StatusCita.enCurso);
@@ -145,7 +145,8 @@ export class Doctor extends ObservableAuditoria {
         const exMed = this._especializaciones[espIndex].examenMedico();
         cita.actualizarStatus(StatusCita.finalizada);
         let registro1 = new RegistroMedico(exMed, new NotificacionPush());
-        this.addRegistroMed(registro1, paciente);
+        this.addRegistroMed(registro1, paciente);       
+        this.notify([this.getNombre(),Date.now(),paciente.getNombre(),"Creó registro médico"])
     }
 
     agendarCita(paciente: Paciente, fecha: Date, solicitud: Solicitud): Cita {
