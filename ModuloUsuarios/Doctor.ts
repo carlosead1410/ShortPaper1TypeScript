@@ -82,10 +82,12 @@ export class Doctor extends ObservableAuditoria {
         
     }
 
-    agendarCita(paciente: Paciente, fecha:Date): Cita{
+    agendarCita(paciente: Paciente, fecha:Date): void{
+        /*
         let cita = new Telemedicina(paciente,fecha);
         this._historialCitas.push(cita)
         return cita;
+        */
     }
 
     modificarHistoriaMedica(paciente: Paciente){
