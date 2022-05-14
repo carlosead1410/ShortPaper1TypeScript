@@ -14,11 +14,6 @@ var Solicitud = /** @class */ (function () {
     Solicitud.prototype.getTipo = function () {
         return this._tipo;
     };
-    Solicitud.prototype.notificarDoctor = function (doctor, paciente) {
-        this.verificarSuscripccion(paciente);
-        doctor.agendarCita(paciente);
-    };
-    Solicitud.prototype.notificarPaciente = function () { };
     Solicitud.prototype.verificarSuscripccion = function (paciente) {
         var suscripcion_p = paciente.ObtenerPlan();
         if (suscripcion_p.status != Suscripccion_1.StatusSuscripccion.Activa) {

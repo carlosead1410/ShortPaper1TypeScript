@@ -68,7 +68,7 @@ export class Doctor extends ObservableAuditoria {
     private _nombre: string;
     private _especializaciones: Array<Especialidad> = [];
     private _consultorio: Ubicacion;
-    private _historialCitas: Array<Cita>;
+    private _historialCitas: Array<Cita> = [];
 
     constructor(nombre: string, especializaciones:Array<Especialidad>, consultorio:Ubicacion, o: ObservadorRegistro) { // esto no se si va
         super(o);

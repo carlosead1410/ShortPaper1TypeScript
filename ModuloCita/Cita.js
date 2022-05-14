@@ -15,7 +15,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Presencial = exports.Telemedicina = exports.Cita = void 0;
+exports.Presencial = exports.Telemedicina = exports.Cita = exports.StatusCita = void 0;
 var PatronObservador_1 = require("../ModuloNotificaciones/PatronObservador");
 // Status que puede tener la Cita
 var StatusCita;
@@ -25,7 +25,7 @@ var StatusCita;
     StatusCita["pendiente"] = "PENDIENTE";
     StatusCita["cancelada"] = "CANCELADA";
     StatusCita["finalizada"] = "FINALIZADA";
-})(StatusCita || (StatusCita = {}));
+})(StatusCita = exports.StatusCita || (exports.StatusCita = {}));
 // Clase Cita
 // Falta colocarle la clase Doctor
 var Cita = /** @class */ (function (_super) {
@@ -37,6 +37,9 @@ var Cita = /** @class */ (function (_super) {
         _this.status = StatusCita.pendiente;
         return _this;
     }
+    Cita.prototype.actualizarStatus = function (status) {
+        this.status = status;
+    };
     return Cita;
 }(PatronObservador_1.ObservableNotificacion));
 exports.Cita = Cita;

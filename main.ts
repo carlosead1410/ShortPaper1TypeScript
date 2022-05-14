@@ -125,7 +125,7 @@ function cu_solicitarCitaCancelada():void{
     solicitud.verificarSuscripccion(paciente1);
 }
 
-cu_solicitarCitaCancelada();
+// cu_solicitarCitaCancelada();
 
 
 // Caso de uso Doctor crea una Cita
