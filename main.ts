@@ -87,7 +87,7 @@ function cu_solicitarCitaActiva():void{
     let doctor1 = new Doctor("Eduardo Damiano", [new Cardiologo(), new Peidatra()], new Ubicacion("Venezuela", "Dto Capital", "Caracas"), registro_Auditoria);
 
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    let solucitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1);
+    let solucitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1, new Peidatra());
 
     solucitud.verificarSuscripccion(paciente1);
     console.log("El Paciente si puede solicitar la cita ya que esta suscrito al sistema");
@@ -124,7 +124,7 @@ function cu_solicitarCitaCancelada():void{
     let doctor1 = new Doctor("Eduardo Damiano", [new Cardiologo(), new Peidatra()], new Ubicacion("Venezuela", "Dto Capital", "Caracas"), registro_Auditoria);
 
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
+    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Peidatra());
 
     solicitud.verificarSuscripccion(paciente1);
 }
@@ -149,7 +149,7 @@ function cu_agendarCita(){
     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     let cita1: Cita;
-    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
+    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Cardiologo());
     // El paciente esta activo en la suscripcion
     //Se agenda la cita, en la Solicitud se conoce el tipo de cita
     
@@ -180,7 +180,7 @@ function cu_agendarCita(){
 
 }
 
-//cu_agendarCita();
+// cu_agendarCita();
 
 //CASO DE USO CONSULTA MEDICA
 function cu_consulta(){
@@ -195,7 +195,7 @@ function cu_consulta(){
      let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
      let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
      let cita1: Cita;
-     let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1);
+     let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Cardiologo());
      
      cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
  
@@ -233,12 +233,16 @@ function cu_procesoCompletoCita(){
     //EL PACIENTE HACE LA SOLICITUD DE CITA
     
     
-    let solicitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1);
+    let solicitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1, new Cardiologo());
     console.log('\n');
     console.log('\n');
     console.log('*******SE VERIFICA LA SUSCRIPCCION DEL PACIENTE*******');
     //SE VERIFICA SI EL CLIENTE ESTA ACTIVO    
     solicitud.verificarSuscripccion(paciente1);
+    //SE VERIFICA QUE LA ESPECIALIDAD QUE ESTE SOLICITANDO EL PACIENTE LA POSEA EL DOCTOR
+    console.log('*******SE VERIFICA LA ESPECIALIDAD DEL DOCTOR*******');
+    solicitud.verificarEspecialidad(doctor1)
+    console.log('\n');
     console.log('Puede solicitar la cita');
 
     console.log('\n');

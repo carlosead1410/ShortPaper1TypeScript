@@ -78,7 +78,11 @@ export class Doctor extends ObservableAuditoria {
     }
 
     getNombre():string{
-        return "Dr. " + this._nombre
+        return "Dr. " + this._nombre;
+    }
+
+    getEspecializaciones(): Array<Especialidad>{
+        return this._especializaciones;
     }
     
     add(o: ObservadorRegistro): void {
@@ -109,10 +113,10 @@ export class Doctor extends ObservableAuditoria {
         let notificacion: SMS = new SMS() 
         let cita:Cita;
         if (solicitud.getTipo() == TipoCita.Presencial){
-            cita = new Presencial(paciente, fecha, notificacion)
+            cita = new Presencial(paciente, fecha, solicitud.getEspecialidad(),notificacion)
            
         }else{
-            cita = new Telemedicina(paciente, fecha, notificacion)
+            cita = new Telemedicina(paciente, fecha, solicitud.getEspecialidad(), notificacion)
         }   
 
         this._historialCitas.push(cita)

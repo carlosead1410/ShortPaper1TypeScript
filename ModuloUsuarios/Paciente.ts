@@ -4,7 +4,7 @@ import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripcc
 import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "../ModuloHistoriaMedica/HistorialMedico";
 import { Solicitud, TipoCita } from "../ModuloCita/Solicitud";
-import { Doctor } from "./Doctor";
+import { Doctor, Especialidad } from "./Doctor";
 import { Cita, StatusCita } from "../ModuloCita/Cita";
 
 
@@ -67,12 +67,14 @@ export class Paciente extends ObservableAuditoria{
         this._historia.mostrarRegistro();
     }
 
-    solicitarCita(tipo: TipoCita, doctor: Doctor): Solicitud{
+    solicitarCita(tipo: TipoCita, doctor: Doctor, especialidad: Especialidad): Solicitud{
         console.log('***PROCESO SOLICITUD DE CITA ***');
         console.log(`Paciente: ${this._nombre}`);
         console.log(`Doctor: ${doctor.getNombre()}`);
+        console.log(`Doctor: ${especialidad.getNombre()}`);
         console.log(`Tipo Solicitud: ${tipo}`);
-        let solicitud: Solicitud = new Solicitud(tipo);
+        console.log()
+        let solicitud: Solicitud = new Solicitud(tipo, especialidad );
         return solicitud;
         //solicitud.notificarDoctor(doctor, this);
     }

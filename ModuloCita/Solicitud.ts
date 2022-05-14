@@ -1,5 +1,5 @@
 import { StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
-import { Doctor } from "../ModuloUsuarios/Doctor";
+import { Doctor, Especialidad } from "../ModuloUsuarios/Doctor";
 import { Paciente } from "../ModuloUsuarios/Paciente";
 import { Cita } from "./Cita";
 
@@ -10,15 +10,33 @@ export enum TipoCita{
 
 export class Solicitud{
     private _tipo: TipoCita;
-    constructor(tipo: TipoCita){
+    private _especialidad : Especialidad
+    constructor(tipo: TipoCita, especialidad: Especialidad){
         this._tipo = tipo;
+        this._especialidad = especialidad;
     }
 
     getTipo():TipoCita{
         return this._tipo;
     }
 
+    getEspecialidad():Especialidad{
+        return this._especialidad;
+    }
 
+    verificarEspecialidad(doctor : Doctor): void{
+        console.log('ENTRO VERIFICAR')
+        doctor.getEspecializaciones().forEach( (e) => {
+            console.log('ITERADOR')
+            if (e == this._especialidad){
+                console.log('Entro')
+                return ;
+
+            }
+        })
+        console.log('NO ENTRO')
+        throw new Error('El doctor no posee esta especialidad');
+    }
 
     verificarSuscripccion(paciente: Paciente):void{
         let suscripcion_p = paciente.ObtenerPlan();

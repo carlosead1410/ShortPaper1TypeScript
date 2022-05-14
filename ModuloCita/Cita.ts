@@ -4,7 +4,7 @@ import { FeedBack } from "./FeedBack";
 import { Paciente } from "../ModuloUsuarios/Paciente";
 import { ObservableNotificacion, ObservadorNotificacion } from "../ModuloNotificaciones/PatronObservador";
 import { Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
-import { Doctor} from "../ModuloUsuarios/Doctor";
+import { Doctor, Especialidad} from "../ModuloUsuarios/Doctor";
 
 
 // Status que puede tener la Cita
@@ -27,12 +27,14 @@ export abstract class Cita extends ObservableNotificacion{
     status: StatusCita;
     feedback: FeedBack;
     paciente: Paciente;
+    especialidad: Especialidad;
     registroMedico: RegistroMedico;
 
-    constructor (paciente : Paciente, fecha: Date, o: ObservadorNotificacion){
+    constructor (paciente : Paciente, fecha: Date, especialidad: Especialidad,o: ObservadorNotificacion){
         super(o)
         this.paciente = paciente;
         this.fecha = fecha;
+        this.especialidad = especialidad;
         this.status = StatusCita.pendiente;
     }
 
