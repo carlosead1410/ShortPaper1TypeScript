@@ -114,7 +114,7 @@ function cu_solicitarCitaCancelada():void{
     suscripccion.actualizarStatus(StatusSuscripccion.Cancelada);
     paciente1.setSuscripccion(suscripccion);
     console.log(paciente1);
-    
+
     //SE LE CANCELA LA SUSCRIPCCION AL PACIENTE
 
     //SE OMITE LOS PROCEDIMIENTOS EN EL QUE EL PACIENTE BUSCA AL DOCTOR POR ESPECIALIDAD O UBICACION
@@ -129,7 +129,7 @@ function cu_solicitarCitaCancelada():void{
     solicitud.verificarSuscripccion(paciente1);
 }
 
- cu_solicitarCitaCancelada();
+//  cu_solicitarCitaCancelada();
 
 
 // CASO DE USO DOCTOR AGENDA CITA DEL PACIENTE Y PACIENTE ACEPTA LA CITA
@@ -231,9 +231,17 @@ function cu_procesoCompletoCita(){
     let doctor1 = new Doctor("Rafael Romero", [new Cardiologo(), new Peidatra()], new Ubicacion("Colombia", "Antoquia", "Medillin"), registro_Auditoria);
 
     //EL PACIENTE HACE LA SOLICITUD DE CITA
+    
+    
     let solicitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1);
-    //SE VERIFICA SI EL CLIENTE ESTA ACTIVO
+    console.log('\n');
+    console.log('\n');
+    console.log('*******SE VERIFICA LA SUSCRIPCCION DEL PACIENTE*******');
+    //SE VERIFICA SI EL CLIENTE ESTA ACTIVO    
     solicitud.verificarSuscripccion(paciente1);
+    console.log('Puede solicitar la cita');
+
+    console.log('\n');
     console.log('*********************************************************************');
     console.log('********************SOLICITUD****************************************');
     console.log(solicitud);
