@@ -127,7 +127,7 @@ export class Doctor extends ObservableAuditoria {
             si no tiene debe ser creada
         */
         if (paciente._historia === undefined) {
-            paciente._historia == new HistorialMedico();
+            paciente._historia = new HistorialMedico();
         }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(StatusCita.enCurso);
@@ -137,7 +137,7 @@ export class Doctor extends ObservableAuditoria {
 
         */
         let espIndex: number = 0;
-        for (var i: number = 0; i <= this._especializaciones.length; i++) {
+        for (var i: number = 0; i < this._especializaciones.length; i++) {
             if (this._especializaciones[i].getNombre() == cita.especialidad.getNombre()) {
                 espIndex = i;
             }

@@ -19,7 +19,7 @@ export class RegistroMedico extends ObservableNotificacion {
         this.observador.notificar();
     }
 
-    getdatos() {
+    getDatos() {
         return this._datos
     }
 }
@@ -30,10 +30,10 @@ export class HistorialMedico {
 
     mostrarRegistro(): void {
         console.log("****   SU HISTORIAL MEDICO    ****\n");
-        this._registros.forEach(e => {
-            console.log(e);
-        });;
-        console.log("\n");
+        for(let regist of this._registros){
+            console.log(regist.getDatos());
+            console.log("\n");
+        }
     }
 
     agregarRegistro(a: RegistroMedico): void {

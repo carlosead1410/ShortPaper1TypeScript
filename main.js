@@ -140,6 +140,7 @@ function cu_consulta() {
     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
     paciente1.responderCita(cita1, Cita_1.StatusCita.aceptada);
     doctor1.crearRegistroMedico(paciente1, cita1);
+    console.log(doctor1._especializaciones);
 }
 cu_consulta();
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA

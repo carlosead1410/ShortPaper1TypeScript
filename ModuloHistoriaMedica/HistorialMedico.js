@@ -30,7 +30,7 @@ var RegistroMedico = /** @class */ (function (_super) {
     RegistroMedico.prototype.notify = function () {
         this.observador.notificar();
     };
-    RegistroMedico.prototype.getdatos = function () {
+    RegistroMedico.prototype.getDatos = function () {
         return this._datos;
     };
     return RegistroMedico;
@@ -42,11 +42,11 @@ var HistorialMedico = /** @class */ (function () {
     }
     HistorialMedico.prototype.mostrarRegistro = function () {
         console.log("****   SU HISTORIAL MEDICO    ****\n");
-        this._registros.forEach(function (e) {
-            console.log(e);
-        });
-        ;
-        console.log("\n");
+        for (var _i = 0, _a = this._registros; _i < _a.length; _i++) {
+            var regist = _a[_i];
+            console.log(regist.getDatos());
+            console.log("\n");
+        }
     };
     HistorialMedico.prototype.agregarRegistro = function (a) {
         this._registros.push(a);

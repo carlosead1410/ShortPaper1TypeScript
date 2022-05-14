@@ -121,7 +121,7 @@ var Doctor = /** @class */ (function (_super) {
             si no tiene debe ser creada
         */
         if (paciente._historia === undefined) {
-            paciente._historia == new HistorialMedico_1.HistorialMedico();
+            paciente._historia = new HistorialMedico_1.HistorialMedico();
         }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(Cita_1.StatusCita.enCurso);
@@ -131,7 +131,7 @@ var Doctor = /** @class */ (function (_super) {
 
         */
         var espIndex = 0;
-        for (var i = 0; i <= this._especializaciones.length; i++) {
+        for (var i = 0; i < this._especializaciones.length; i++) {
             if (this._especializaciones[i].getNombre() == cita.especialidad.getNombre()) {
                 espIndex = i;
             }
