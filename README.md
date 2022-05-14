@@ -49,3 +49,12 @@ Esta funcion representa la simulacion del proceso en el que el doctor agenda la 
 Esta funcion representa la simulacion del proceso completo en el que un Paciente se suscribe al sistema, solicita una cita, se verifica su status de suscripccion, el doctor agenda la cita (La crea con un status = pendiente), el paciente acepta la cita (cambia el status de cita a aceptada y se le agrega el paciente a la cita).
 
 Si desea probar un caso de uso en especifico usted debe descomentar la linea de codigo donde se llama a la funcion de ese caso de uso y ejecutar el proyecto con los siguientes comandos:
+
+Opcion 1:
+
+	tsc -t es5 main.ts
+	node main.js
+
+Opcion 2:
+
+	tsc-node main.ts
