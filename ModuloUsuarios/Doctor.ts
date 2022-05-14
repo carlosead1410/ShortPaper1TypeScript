@@ -1,8 +1,9 @@
 import { Paciente } from './Paciente';
 import { ObservableAuditoria, ObservadorRegistro } from '../PatronObservadorAuditoria/ObservadorRegistro';
-import { Cita, Telemedicina, Presencial, StatusCita } from '../ModuloCita/Cita'; 
-import { SMS} from '../ModuloNotificaciones/Notificacion' 
+import { Cita, Telemedicina, Presencial, StatusCita } from '../ModuloCita/Cita';
+import { NotificacionPush, SMS } from '../ModuloNotificaciones/Notificacion'
 import { Solicitud, TipoCita } from '../ModuloCita/Solicitud';
+import { HistorialMedico, RegistroMedico } from '../ModuloHistoriaMedica/HistorialMedico';
 /* IMPORTAR CITA PARA USARLA EN DOCTOR */
 
 //NOMBRABLE
@@ -13,12 +14,12 @@ export interface Nombrable {
 
 //UBICACION
 
-export class Ubicacion implements Nombrable{
-    pais:string;
-    estado:string;
-    ciudad:string;
+export class Ubicacion implements Nombrable {
+    pais: string;
+    estado: string;
+    ciudad: string;
 
-    constructor(pais: string, estado: string, ciudad: string){
+    constructor(pais: string, estado: string, ciudad: string) {
         this.pais = pais;
         this.estado = estado;
         this.ciudad = ciudad;
@@ -32,7 +33,7 @@ export class Ubicacion implements Nombrable{
 //ESPECIALIDADES
 
 export interface Especialidad extends Nombrable {
-    examenMedico(): void;
+    examenMedico(): object;
 }
 
 export class Cardiologo implements Especialidad {
@@ -41,6 +42,19 @@ export class Cardiologo implements Especialidad {
     }
     examenMedico() {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        /* ¡¡¡ ACLARACION !!!: Se sabe que es una muy mala practica instanciar objetos dentro de una clase en si,
+        pero para efectos de esta entrega y la simulacion de este caso de uso, se agilizara el proceso de esta manera
+        rellenando aqui el examen medico */
+
+        let exMed = {
+            presionArterial: 120,
+            antecedentesPersonales: ['Obesidad'],
+            altura: '1.75 m',
+            peso: '112 kg',
+            colesterol: '95 mg/dl',
+            frecuenciaCardiaca: '75 ppm'
+        }
+        return exMed;
     }
 }
 
@@ -50,6 +64,9 @@ export class Peidatra implements Especialidad {
     }
     examenMedico() {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        return {
+
+        };
     }
 }
 
@@ -59,6 +76,9 @@ export class Neurologo implements Especialidad {
     }
     examenMedico() {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        return {
+
+        };
     }
 }
 
@@ -66,80 +86,99 @@ export class Neurologo implements Especialidad {
 
 export class Doctor extends ObservableAuditoria {
     private _nombre: string;
-    private _especializaciones: Array<Especialidad> = [];
+    _especializaciones: Array<Especialidad> = [];
     private _consultorio: Ubicacion;
     private _historialCitas: Array<Cita> = [];
 
-    constructor(nombre: string, especializaciones:Array<Especialidad>, consultorio:Ubicacion, o: ObservadorRegistro) { // esto no se si va
+    constructor(nombre: string, especializaciones: Array<Especialidad>, consultorio: Ubicacion, o: ObservadorRegistro) { // esto no se si va
         super(o);
         this._nombre = nombre;
         this._especializaciones = especializaciones;
         this._consultorio = consultorio;
     }
 
-    getNombre():string{
+    getNombre(): string {
         return "Dr. " + this._nombre;
     }
 
-    getEspecializaciones(): Array<Especialidad>{
+    getEspecializaciones(): Array<Especialidad> {
         return this._especializaciones;
     }
-    
+
     add(o: ObservadorRegistro): void {
         this.observador = this.observador;
     }
 
     notify(): void {
-        let registrar:any[] = [];
+        let registrar: any[] = [];
         this.observador.registrar(registrar);
     }
 
-    crearRegistroMedico(paciente: Paciente, cita: Cita){
+    addRegistroMed(registro: RegistroMedico, paciente: Paciente) {
+        const historia: HistorialMedico = paciente.obtenerHistorial();
+        historia.agregarRegistro(registro);
+        historia.mostrarRegistro();
+    }
+
+    crearRegistroMedico(paciente: Paciente, cita: Cita) {
         this.notify()
         /*
             Se debe verificar si el paciente tiene o no tiene historia medica 
             si no tiene debe ser creada
         */
+        if (paciente._historia === undefined) {
+            paciente._historia = new HistorialMedico();
+        }
         //La Cita pasa a estar en curso
-        cita.actualizarStatus(StatusCita.enCurso)
+        cita.actualizarStatus(StatusCita.enCurso);
         /*
             El metodo debe recibir el tipo de especializacion a la cual sera atendido 
             ya que el doctor puede tener varias especializaciones
 
         */
+        let espIndex: number = 0;
+        for (var i: number = 0; i < this._especializaciones.length; i++) {
+            if (this._especializaciones[i].getNombre() == cita.especialidad.getNombre()) {
+                espIndex = i;
+            }
+        }
+        const exMed = this._especializaciones[espIndex].examenMedico();
+        cita.actualizarStatus(StatusCita.finalizada);
+        let registro1 = new RegistroMedico(exMed, new NotificacionPush());
+        this.addRegistroMed(registro1, paciente);
     }
 
-    agendarCita(paciente: Paciente, fecha:Date, solicitud: Solicitud): Cita{
-        let notificacion: SMS = new SMS() 
-        let cita:Cita;
-        if (solicitud.getTipo() == TipoCita.Presencial){
-            cita = new Presencial(paciente, fecha, solicitud.getEspecialidad(),notificacion)
-           
-        }else{
+    agendarCita(paciente: Paciente, fecha: Date, solicitud: Solicitud): Cita {
+        let notificacion: SMS = new SMS()
+        let cita: Cita;
+        if (solicitud.getTipo() == TipoCita.Presencial) {
+            cita = new Presencial(paciente, fecha, solicitud.getEspecialidad(), notificacion)
+
+        } else {
             cita = new Telemedicina(paciente, fecha, solicitud.getEspecialidad(), notificacion)
-        }   
+        }
 
         this._historialCitas.push(cita)
         return cita;
 
     }
 
-    modificarHistoriaMedica(paciente: Paciente){
+    modificarHistoriaMedica(paciente: Paciente) {
 
     }
 }
 
 //BUSQUEDA DE DOCTORES
-export class BuscarDoctor{
+export class BuscarDoctor {
     Doctores: Doctor[];
 
-    buscarDoctor<tipoE>(E: tipoE):void{
+    buscarDoctor<tipoE>(E: tipoE): void {
 
-        return ;
+        return;
     }
 
-    buscarTopDoctor():void{
-        
+    buscarTopDoctor(): void {
+
         return;
     }
 }
@@ -151,7 +190,7 @@ export class BuscarDoctor{
 //         if (element.getNombre().includes(nombre)) {
 //             listaFiltrada.push(element);
 //         }
-//     }); 
+//     });
 
-//     return listaFiltrada; 
+//     return listaFiltrada;
 // }

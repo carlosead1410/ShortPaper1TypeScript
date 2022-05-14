@@ -14,12 +14,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.BuscarDoctor = exports.Doctor = exports.Neurologo = exports.Peidatra = exports.Cardiologo = exports.Ubicacion = void 0;
 var ObservadorRegistro_1 = require("../PatronObservadorAuditoria/ObservadorRegistro");
 var Cita_1 = require("../ModuloCita/Cita");
 var Notificacion_1 = require("../ModuloNotificaciones/Notificacion");
 var Solicitud_1 = require("../ModuloCita/Solicitud");
+var HistorialMedico_1 = require("../ModuloHistoriaMedica/HistorialMedico");
 //UBICACION
 var Ubicacion = /** @class */ (function () {
     function Ubicacion(pais, estado, ciudad) {
@@ -41,6 +42,18 @@ var Cardiologo = /** @class */ (function () {
     };
     Cardiologo.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        /* ¡¡¡ ACLARACION !!!: Se sabe que es una muy mala practica instanciar objetos dentro de una clase en si,
+        pero para efectos de esta entrega y la simulacion de este caso de uso, se agilizara el proceso de esta manera
+        rellenando aqui el examen medico */
+        var exMed = {
+            presionArterial: 120,
+            antecedentesPersonales: ['Obesidad'],
+            altura: '1.75 m',
+            peso: '112 kg',
+            colesterol: '95 mg/dl',
+            frecuenciaCardiaca: '75 ppm'
+        };
+        return exMed;
     };
     return Cardiologo;
 }());
@@ -53,6 +66,7 @@ var Peidatra = /** @class */ (function () {
     };
     Peidatra.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        return {};
     };
     return Peidatra;
 }());
@@ -65,6 +79,7 @@ var Neurologo = /** @class */ (function () {
     };
     Neurologo.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+        return {};
     };
     return Neurologo;
 }());
@@ -94,12 +109,20 @@ var Doctor = /** @class */ (function (_super) {
         var registrar = [];
         this.observador.registrar(registrar);
     };
+    Doctor.prototype.addRegistroMed = function (registro, paciente) {
+        var historia = paciente.obtenerHistorial();
+        historia.agregarRegistro(registro);
+        historia.mostrarRegistro();
+    };
     Doctor.prototype.crearRegistroMedico = function (paciente, cita) {
         this.notify();
         /*
             Se debe verificar si el paciente tiene o no tiene historia medica
             si no tiene debe ser creada
         */
+        if (paciente._historia === undefined) {
+            paciente._historia = new HistorialMedico_1.HistorialMedico();
+        }
         //La Cita pasa a estar en curso
         cita.actualizarStatus(Cita_1.StatusCita.enCurso);
         /*
@@ -107,6 +130,16 @@ var Doctor = /** @class */ (function (_super) {
             ya que el doctor puede tener varias especializaciones
 
         */
+        var espIndex = 0;
+        for (var i = 0; i < this._especializaciones.length; i++) {
+            if (this._especializaciones[i].getNombre() == cita.especialidad.getNombre()) {
+                espIndex = i;
+            }
+        }
+        var exMed = this._especializaciones[espIndex].examenMedico();
+        cita.actualizarStatus(Cita_1.StatusCita.finalizada);
+        var registro1 = new HistorialMedico_1.RegistroMedico(exMed, new Notificacion_1.NotificacionPush());
+        this.addRegistroMed(registro1, paciente);
     };
     Doctor.prototype.agendarCita = function (paciente, fecha, solicitud) {
         var notificacion = new Notificacion_1.SMS();
@@ -144,6 +177,6 @@ exports.BuscarDoctor = BuscarDoctor;
 //         if (element.getNombre().includes(nombre)) {
 //             listaFiltrada.push(element);
 //         }
-//     }); 
-//     return listaFiltrada; 
+//     });
+//     return listaFiltrada;
 // }

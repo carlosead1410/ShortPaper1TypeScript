@@ -4,12 +4,12 @@ import { FeedBack } from "./FeedBack";
 import { Paciente } from "../ModuloUsuarios/Paciente";
 import { ObservableNotificacion, ObservadorNotificacion } from "../ModuloNotificaciones/PatronObservador";
 import { Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
-import { Doctor, Especialidad} from "../ModuloUsuarios/Doctor";
+import { Doctor, Especialidad } from "../ModuloUsuarios/Doctor";
 
 
 // Status que puede tener la Cita
 
-export enum StatusCita{
+export enum StatusCita {
     enCurso = 'EN_CURSO',
     aceptada = 'ACEPTADA',
     pendiente = 'PENDIENTE',
@@ -22,7 +22,7 @@ export enum StatusCita{
 // Clase Cita
 // Falta colocarle la clase Doctor
 
-export abstract class Cita extends ObservableNotificacion{
+export abstract class Cita extends ObservableNotificacion {
     fecha: Date;
     status: StatusCita;
     feedback: FeedBack;
@@ -30,7 +30,7 @@ export abstract class Cita extends ObservableNotificacion{
     especialidad: Especialidad;
     registroMedico: RegistroMedico;
 
-    constructor (paciente : Paciente, fecha: Date, especialidad: Especialidad,o: ObservadorNotificacion){
+    constructor(paciente: Paciente, fecha: Date, especialidad: Especialidad, o: ObservadorNotificacion) {
         super(o)
         this.paciente = paciente;
         this.fecha = fecha;
@@ -38,18 +38,16 @@ export abstract class Cita extends ObservableNotificacion{
         this.status = StatusCita.pendiente;
     }
 
-    actualizarStatus(status: StatusCita){
+    actualizarStatus(status: StatusCita) {
         this.status = status;
     }
 
-    abstract finalizarCita():void
-
-    abstract obtenerPaciente():Paciente
+    abstract obtenerPaciente(): Paciente
 }
 
 
 
-export class Telemedicina extends (Cita){
+export class Telemedicina extends (Cita) {
 
 
     finalizarCita(): void {
@@ -73,7 +71,7 @@ export class Telemedicina extends (Cita){
 }
 
 
-export class Presencial extends(Cita){
+export class Presencial extends (Cita) {
 
     finalizarCita(): void {
         console.log('Finalizada presencial')

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.ObservableAuditoria = exports.Registro_Actividad = exports.Registro_Auditoria = void 0;
 var Registro_Auditoria = /** @class */ (function () {
     function Registro_Auditoria() {

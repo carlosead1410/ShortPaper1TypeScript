@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.Solicitud = exports.TipoCita = void 0;
 var Suscripccion_1 = require("../ModuloSuscripccion/Suscripccion");
 var TipoCita;
@@ -19,7 +19,6 @@ var Solicitud = /** @class */ (function () {
         return this._especialidad;
     };
     Solicitud.prototype.verificarEspecialidad = function (doctor) {
-        console.log('ENTRO VERIFICAR');
         var especializaciones = doctor.getEspecializaciones();
         var especialidad;
         if (especializaciones.length == 0) {
@@ -32,7 +31,6 @@ var Solicitud = /** @class */ (function () {
                 return true;
             }
         }
-        console.log('NO ENTRO');
         throw new Error('El doctor no posee esta especialidad');
         return false;
     };

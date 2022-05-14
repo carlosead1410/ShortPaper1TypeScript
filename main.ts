@@ -12,7 +12,7 @@ import { Solicitud, TipoCita } from "./ModuloCita/Solicitud";
 
 
 // CASO DE USO SUSCRIPCCION
-function cu_suscripccionPaciente():void{
+function cu_suscripccionPaciente(): void {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE\n");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
@@ -38,7 +38,7 @@ function cu_suscripccionPaciente():void{
 // cu_suscripccionPaciente();
 
 //CASO DE USO SUSCRIPCCION POR TDC Y ANUAL (DIFERENTE METODO DE PAGO)
-function cu_suscripccionPacienteTDC():void{
+function cu_suscripccionPacienteTDC(): void {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE A TRAVES DE UNA TDC Y ANUAL\n");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
@@ -65,7 +65,7 @@ function cu_suscripccionPacienteTDC():void{
 
 
 //CASO DE USO PACIENTE SOLICITA CITA (SUSCRIPCCION ACTIVA)
-function cu_solicitarCitaActiva():void{
+function cu_solicitarCitaActiva(): void {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION ACTIVA");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
@@ -87,7 +87,7 @@ function cu_solicitarCitaActiva():void{
     let doctor1 = new Doctor("Eduardo Damiano", [new Cardiologo(), new Peidatra()], new Ubicacion("Venezuela", "Dto Capital", "Caracas"), registro_Auditoria);
 
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    let solucitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1, new Peidatra());
+    let solucitud: Solicitud = paciente1.solicitarCita(TipoCita.Teleconsulta, doctor1, new Peidatra());
 
     solucitud.verificarSuscripccion(paciente1);
     console.log("El Paciente si puede solicitar la cita ya que esta suscrito al sistema");
@@ -96,7 +96,7 @@ function cu_solicitarCitaActiva():void{
 
 
 //CASO DE USO PACIENTE SOLICITA CITA (SUSCRIPCCION CANCELADA O BLOQUEADA)
-function cu_solicitarCitaCancelada():void{
+function cu_solicitarCitaCancelada(): void {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION CANCELADA O BLOQUEADA");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
@@ -134,33 +134,33 @@ function cu_solicitarCitaCancelada():void{
 
 // CASO DE USO DOCTOR AGENDA CITA DEL PACIENTE Y PACIENTE ACEPTA LA CITA
 
-function cu_agendarCita(){
+function cu_agendarCita() {
     /*
         En este punto el Paciente ya le paso Solicitud al Doctor para agendar una Cita
         paciente1 fue el que realizo la solicitud al doctor1
 
     */
-    
+
     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
     let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();  
-    
-    
+    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();
+
+
     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     let cita1: Cita;
     let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Cardiologo());
     // El paciente esta activo en la suscripcion
     //Se agenda la cita, en la Solicitud se conoce el tipo de cita
-    
-    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
+
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
 
     // Cita Creada 
     console.log('*********************************************************************');
     console.log('********************DATOS DE LA CITA*********************************');
     console.log(cita1);
     console.log('*********************************************************************');
-    
+
     //Si el paciente acepta la cita 
     paciente1.responderCita(cita1, StatusCita.aceptada);
 
@@ -172,7 +172,7 @@ function cu_agendarCita(){
 
     //Si el paciente cancela la cita flujo alterno
     paciente1.responderCita(cita1, StatusCita.cancelada);
-    
+
     console.log('****************************************************************************');
     console.log('******************DATOS DE LA CITA CANCELADA********************************');
     console.log(cita1);
@@ -183,32 +183,31 @@ function cu_agendarCita(){
 // cu_agendarCita();
 
 //CASO DE USO CONSULTA MEDICA
-function cu_consulta(){
+function cu_consulta() {
     /*
         En este punto el Paciente ya acepto y es el turno de ir a la cita
     */
-     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-     let registro_actividad: Registro_Actividad = new Registro_Actividad();
-     let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();  
-     
-     
-     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
-     let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
-     let cita1: Cita;
-     let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Cardiologo());
-     
-     cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
- 
-      
-     paciente1.responderCita(cita1, StatusCita.aceptada);
+    // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
+    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();
 
-     doctor1.crearRegistroMedico(paciente1, cita1)
 
+    let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
+    console.log(typeof paciente1._historia);
+    let doctor1: Doctor = new Doctor('Daniela Martinez', [new Cardiologo()], new Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
+    let cita1: Cita;
+    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Presencial, doctor1, new Cardiologo());
+
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
+
+    paciente1.responderCita(cita1, StatusCita.aceptada);
+
+    doctor1.crearRegistroMedico(paciente1, cita1)
 }
-
+cu_consulta();
 
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
-function cu_procesoCompletoCita(){
+function cu_procesoCompletoCita() {
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
     let registro_actividad: Registro_Actividad = new Registro_Actividad();
@@ -231,9 +230,9 @@ function cu_procesoCompletoCita(){
     let doctor1 = new Doctor("Rafael Romero", [new Cardiologo(), new Peidatra()], new Ubicacion("Colombia", "Antoquia", "Medillin"), registro_Auditoria);
 
     //EL PACIENTE HACE LA SOLICITUD DE CITA
-    
-    
-    let solicitud: Solicitud = paciente1.solicitarCita( TipoCita.Teleconsulta, doctor1, new Cardiologo());
+
+
+    let solicitud: Solicitud = paciente1.solicitarCita(TipoCita.Teleconsulta, doctor1, new Cardiologo());
     console.log('\n');
     console.log('\n');
     console.log('*******SE VERIFICA LA SUSCRIPCCION DEL PACIENTE*******');
@@ -254,7 +253,7 @@ function cu_procesoCompletoCita(){
 
     // LUEGO DEL DOCTOR QUE DOCTOR RECIBE LA SOLICITUD EL DOCTOR AGENDA LA CITA
     let cita1: Cita;
-    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30),solicitud);
+    cita1 = doctor1.agendarCita(paciente1, new Date(2022, 5, 16, 8, 30), solicitud);
 
     // SE AGENDA LA CITA 
     console.log('*********************************************************************');
@@ -262,7 +261,7 @@ function cu_procesoCompletoCita(){
     console.log(cita1);
     console.log('*********************************************************************');
     console.log('\n');
-    
+
     // EL PACIENTE LA ACEPTA  
     paciente1.responderCita(cita1, StatusCita.aceptada);
 
@@ -273,4 +272,4 @@ function cu_procesoCompletoCita(){
     console.log('\n');
 }
 
-cu_procesoCompletoCita()
+//cu_procesoCompletoCita()

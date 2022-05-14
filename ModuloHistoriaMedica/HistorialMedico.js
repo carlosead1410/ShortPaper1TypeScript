@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.HistorialMedico = exports.RegistroMedico = void 0;
 var PatronObservador_1 = require("../ModuloNotificaciones/PatronObservador");
 var RegistroMedico = /** @class */ (function (_super) {
@@ -30,26 +30,23 @@ var RegistroMedico = /** @class */ (function (_super) {
     RegistroMedico.prototype.notify = function () {
         this.observador.notificar();
     };
-    Object.defineProperty(RegistroMedico.prototype, "datos", {
-        get: function () {
-            return this._datos;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    RegistroMedico.prototype.getDatos = function () {
+        return this._datos;
+    };
     return RegistroMedico;
 }(PatronObservador_1.ObservableNotificacion));
 exports.RegistroMedico = RegistroMedico;
 var HistorialMedico = /** @class */ (function () {
     function HistorialMedico() {
+        this._registros = [];
     }
     HistorialMedico.prototype.mostrarRegistro = function () {
         console.log("****   SU HISTORIAL MEDICO    ****\n");
-        this._registros.forEach(function (e) {
-            console.log(e);
-        });
-        ;
-        console.log("\n");
+        for (var _i = 0, _a = this._registros; _i < _a.length; _i++) {
+            var regist = _a[_i];
+            console.log(regist.getDatos());
+            console.log("\n");
+        }
     };
     HistorialMedico.prototype.agregarRegistro = function (a) {
         this._registros.push(a);
