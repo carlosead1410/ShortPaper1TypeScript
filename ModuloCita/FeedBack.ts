@@ -12,22 +12,22 @@ export class FeedBack {
     }
 
 
-    get valoracion(){
+    getvaloracion(){
         return this._valoracion;
     }
 
-    get comentario(){
+    getcomentario(){
         return this._comentario;
     }
 
-    set valoracion(valoracion:number){
+    setvaloracion(valoracion:number){
         if (valoracion < 0 && valoracion > 5) {
             throw new Error('La valoracion debe estar en un Rango de [0-5]')
         }
         this._valoracion = valoracion;
     }
 
-    set comentario(comentario:string){
+    setcomentario(comentario:string){
         this._comentario = comentario;
     }
 

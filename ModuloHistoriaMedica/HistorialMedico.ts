@@ -2,11 +2,11 @@
 import { ObservadorNotificacion, ObservableNotificacion } from "../ModuloNotificaciones/PatronObservador";
 
 
-export class RegistroMedico extends ObservableNotificacion{
+export class RegistroMedico extends ObservableNotificacion {
 
     private _datos: object;
 
-    constructor(datos: object, o: ObservadorNotificacion){
+    constructor(datos: object, o: ObservadorNotificacion) {
         super(o)
         this._datos = datos;
     }
@@ -19,16 +19,16 @@ export class RegistroMedico extends ObservableNotificacion{
         this.observador.notificar();
     }
 
-    get datos(){
+    getdatos() {
         return this._datos
     }
 }
 
 
-export class HistorialMedico{
-    private _registros: Array<RegistroMedico>
-    
-    mostrarRegistro():void{
+export class HistorialMedico {
+    private _registros: Array<RegistroMedico> = [];
+
+    mostrarRegistro(): void {
         console.log("****   SU HISTORIAL MEDICO    ****\n");
         this._registros.forEach(e => {
             console.log(e);
@@ -36,8 +36,8 @@ export class HistorialMedico{
         console.log("\n");
     }
 
-    agregarRegistro(a: RegistroMedico):void{
+    agregarRegistro(a: RegistroMedico): void {
         this._registros.push(a);
     }
-    
+
 }

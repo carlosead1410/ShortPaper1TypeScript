@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.Paciente = void 0;
 var IVisitor_1 = require("../ModuloSuscripccion/IVisitor");
 var Suscripccion_1 = require("../ModuloSuscripccion/Suscripccion");
@@ -40,6 +40,9 @@ var Paciente = /** @class */ (function (_super) {
         suscripccion.actualizarFecha();
         suscripccion.actualizarStatus(Suscripccion_1.StatusSuscripccion.Activa);
         this._plan = suscripccion;
+    };
+    Paciente.prototype.obtenerHistorial = function () {
+        return this._historia;
     };
     Paciente.prototype.cancelarSuscripcion = function () {
         this._plan.actualizarStatus(Suscripccion_1.StatusSuscripccion.Cancelada);

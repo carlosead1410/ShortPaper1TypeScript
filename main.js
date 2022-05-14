@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var Paciente_1 = require("./ModuloUsuarios/Paciente");
 var MetodoPago_1 = require("./ModuloSuscripccion/MetodoPago");
 var Suscripccion_1 = require("./ModuloSuscripccion/Suscripccion");
@@ -133,6 +133,7 @@ function cu_consulta() {
     var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
     var registro_auditoria = new ObservadorRegistro_1.Registro_Auditoria();
     var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
+    console.log(typeof paciente1._historia);
     var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     var cita1;
     var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1, new Doctor_1.Cardiologo());
@@ -140,6 +141,7 @@ function cu_consulta() {
     paciente1.responderCita(cita1, Cita_1.StatusCita.aceptada);
     doctor1.crearRegistroMedico(paciente1, cita1);
 }
+cu_consulta();
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
 function cu_procesoCompletoCita() {
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
@@ -192,4 +194,4 @@ function cu_procesoCompletoCita() {
     console.log('****************************************************************************');
     console.log('\n');
 }
-cu_procesoCompletoCita();
+//cu_procesoCompletoCita()

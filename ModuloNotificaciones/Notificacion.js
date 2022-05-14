@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.NotificacionPush = exports.Llamada = exports.CorreoElectronico = exports.SMS = void 0;
 var SMS = /** @class */ (function () {
     function SMS() {
