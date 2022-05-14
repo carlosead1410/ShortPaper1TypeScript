@@ -6,7 +6,8 @@ export interface ObservadorNotificacion{
 
 export abstract class ObservableNotificacion{
     observador: ObservadorNotificacion;
-    abstract add(o: ObservableNotificacion):void;
+
+    abstract add(o: ObservadorNotificacion):void;
     abstract notify():void;
 
     constructor(observador: ObservadorNotificacion){
