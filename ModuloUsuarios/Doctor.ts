@@ -16,6 +16,13 @@ export class Ubicacion implements Nombrable{
     estado:string;
     ciudad:string;
 
+    constructor(pais:string, estado: string, ciudad: string){
+        this.pais = pais;
+        this.estado = estado;
+        this.ciudad = ciudad;
+
+    }
+
     getNombre(): string {
         return `${this.pais} / ${this.estado} / ${this.ciudad}`;
     }
@@ -74,12 +81,12 @@ export class Doctor extends ObservableAuditoria {
     }
 
     notify(): void {
-        let registrea;
+        let registrea = [];
         this.observador.registrar(registrea);
     }
 
     crearRegistroMedico(paciente: Paciente, cita: Cita){
-        
+        this.notify()
     }
 
     agendarCita(paciente: Paciente, fecha:Date): void{
