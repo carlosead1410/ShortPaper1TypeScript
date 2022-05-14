@@ -9,7 +9,7 @@ import { Doctor} from "../ModuloUsuarios/Doctor";
 
 // Status que puede tener la Cita
 
-enum StatusCita{
+export enum StatusCita{
     enCurso = 'EN_CURSO',
     aceptada = 'ACEPTADA',
     pendiente = 'PENDIENTE',
@@ -36,6 +36,9 @@ export abstract class Cita extends ObservableNotificacion{
         this.status = StatusCita.pendiente;
     }
 
+    actualizarStatus(status: StatusCita){
+        this.status = status;
+    }
 
     abstract finalizarCita():void
 

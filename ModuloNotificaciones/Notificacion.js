@@ -1,21 +1,39 @@
-class SMS {
-    notificar() {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NotificacionPush = exports.Llamada = exports.CorreoElectronico = exports.SMS = void 0;
+var SMS = /** @class */ (function () {
+    function SMS() {
+    }
+    SMS.prototype.notificar = function () {
         console.log('Notificacion a traves de SMS');
+    };
+    return SMS;
+}());
+exports.SMS = SMS;
+var CorreoElectronico = /** @class */ (function () {
+    function CorreoElectronico() {
     }
-}
-class CorreoElectronico {
-    notificar() {
+    CorreoElectronico.prototype.notificar = function () {
         console.log('Notificacion a traves de Correo Electronico');
+    };
+    return CorreoElectronico;
+}());
+exports.CorreoElectronico = CorreoElectronico;
+var Llamada = /** @class */ (function () {
+    function Llamada() {
     }
-}
-class Llamada {
-    notificar() {
+    Llamada.prototype.notificar = function () {
         console.log('Notificacion a traves de Llamada');
+    };
+    return Llamada;
+}());
+exports.Llamada = Llamada;
+var NotificacionPush = /** @class */ (function () {
+    function NotificacionPush() {
     }
-}
-class NotificacionPush {
-    notificar() {
+    NotificacionPush.prototype.notificar = function () {
         console.log('Notificacion a traves de Notificacion Push');
-    }
-}
-export {};
+    };
+    return NotificacionPush;
+}());
+exports.NotificacionPush = NotificacionPush;

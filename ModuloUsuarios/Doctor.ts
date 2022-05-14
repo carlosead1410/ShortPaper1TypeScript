@@ -1,6 +1,7 @@
 import { Paciente } from './Paciente';
 import { ObservableAuditoria, ObservadorRegistro } from '../PatronObservadorAuditoria/ObservadorRegistro';
 import { Cita, Telemedicina, Presencial } from '../ModuloCita/Cita'; 
+import { SMS} from '../ModuloNotificaciones/Notificacion' 
 /* IMPORTAR CITA PARA USARLA EN DOCTOR */
 
 //NOMBRABLE
@@ -15,6 +16,12 @@ export class Ubicacion implements Nombrable{
     pais:string;
     estado:string;
     ciudad:string;
+
+    constructor(pais: string, estado: string, ciudad: string){
+        this.pais = pais;
+        this.estado = estado;
+        this.ciudad = ciudad;
+    }
 
     getNombre(): string {
         return `${this.pais} / ${this.estado} / ${this.ciudad}`;
@@ -74,20 +81,27 @@ export class Doctor extends ObservableAuditoria {
     }
 
     notify(): void {
-        let registrea;
-        this.observador.registrar(registrea);
+        let registrar:any[] = [];
+        this.observador.registrar(registrar);
     }
 
     crearRegistroMedico(paciente: Paciente, cita: Cita){
         
     }
 
-    agendarCita(paciente: Paciente, fecha:Date): void{
-        /*
-        let cita = new Telemedicina(paciente,fecha);
+    agendarCita(paciente: Paciente, fecha:Date, tipo: string): Cita{
+        let notificacion: SMS = new SMS() 
+        let cita:Cita;
+        if (tipo == 'PRESENCIAL'){
+            cita = new Presencial(paciente, fecha, notificacion)
+           
+        }else{
+            cita = new Telemedicina(paciente, fecha, notificacion)
+        }   
+
         this._historialCitas.push(cita)
         return cita;
-        */
+
     }
 
     modificarHistoriaMedica(paciente: Paciente){

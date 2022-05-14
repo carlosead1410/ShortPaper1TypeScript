@@ -1,71 +1,122 @@
-import { ObservableAuditoria } from '../PatronObservadorAuditoria/ObservadorRegistro';
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BuscarDoctor = exports.Doctor = exports.Neurologo = exports.Peidatra = exports.Cardiologo = exports.Ubicacion = void 0;
+var ObservadorRegistro_1 = require("../PatronObservadorAuditoria/ObservadorRegistro");
+var Cita_1 = require("../ModuloCita/Cita");
+var Notificacion_1 = require("../ModuloNotificaciones/Notificacion");
 //UBICACION
-export class Ubicacion {
-    getNombre() {
-        return `${this.pais} / ${this.estado} / ${this.ciudad}`;
+var Ubicacion = /** @class */ (function () {
+    function Ubicacion(pais, estado, ciudad) {
+        this.pais = pais;
+        this.estado = estado;
+        this.ciudad = ciudad;
     }
-}
-export class Cardiologo {
-    getNombre() {
+    Ubicacion.prototype.getNombre = function () {
+        return "".concat(this.pais, " / ").concat(this.estado, " / ").concat(this.ciudad);
+    };
+    return Ubicacion;
+}());
+exports.Ubicacion = Ubicacion;
+var Cardiologo = /** @class */ (function () {
+    function Cardiologo() {
+    }
+    Cardiologo.prototype.getNombre = function () {
         return 'Cardiologo';
-    }
-    examenMedico() {
+    };
+    Cardiologo.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+    };
+    return Cardiologo;
+}());
+exports.Cardiologo = Cardiologo;
+var Peidatra = /** @class */ (function () {
+    function Peidatra() {
     }
-}
-export class Peidatra {
-    getNombre() {
+    Peidatra.prototype.getNombre = function () {
         return 'Pediatra';
-    }
-    examenMedico() {
+    };
+    Peidatra.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
+    };
+    return Peidatra;
+}());
+exports.Peidatra = Peidatra;
+var Neurologo = /** @class */ (function () {
+    function Neurologo() {
     }
-}
-export class Neurologo {
-    getNombre() {
+    Neurologo.prototype.getNombre = function () {
         return 'Neurologo';
-    }
-    examenMedico() {
+    };
+    Neurologo.prototype.examenMedico = function () {
         //Aqui van las especificaciones medicas tratadas en esta especialidad
-    }
-}
+    };
+    return Neurologo;
+}());
+exports.Neurologo = Neurologo;
 //DOCTOR
-export class Doctor extends ObservableAuditoria {
-    constructor(nombre, especializaciones, consultorio, o) {
-        super(o);
-        this._especializaciones = [];
-        this._nombre = nombre;
-        this._especializaciones = especializaciones;
-        this._consultorio = consultorio;
+var Doctor = /** @class */ (function (_super) {
+    __extends(Doctor, _super);
+    function Doctor(nombre, especializaciones, consultorio, o) {
+        var _this = _super.call(this, o) || this;
+        _this._especializaciones = [];
+        _this._nombre = nombre;
+        _this._especializaciones = especializaciones;
+        _this._consultorio = consultorio;
+        return _this;
     }
-    add(o) {
+    Doctor.prototype.add = function (o) {
         this.observador = this.observador;
-    }
-    notify() {
-        let registrea;
-        this.observador.registrar(registrea);
-    }
-    crearRegistroMedico(paciente, cita) {
-    }
-    agendarCita(paciente, fecha) {
-        /*
-        let cita = new Telemedicina(paciente,fecha);
-        this._historialCitas.push(cita)
-        return cita;
-        */
-    }
-    modificarHistoriaMedica(paciente) {
-    }
-}
+    };
+    Doctor.prototype.notify = function () {
+        var registrar = [];
+        this.observador.registrar(registrar);
+    };
+    Doctor.prototype.crearRegistroMedico = function (paciente, cita) {
+    };
+    Doctor.prototype.agendarCita = function (paciente, fecha, tipo) {
+        var notificacion = new Notificacion_1.SMS();
+        if (tipo == 'PRESENCIAL') {
+            var cita = new Cita_1.Presencial(paciente, fecha, notificacion);
+            return cita;
+        }
+        else {
+            var cita = new Cita_1.Telemedicina(paciente, fecha, notificacion);
+            return cita;
+        }
+    };
+    Doctor.prototype.modificarHistoriaMedica = function (paciente) {
+    };
+    return Doctor;
+}(ObservadorRegistro_1.ObservableAuditoria));
+exports.Doctor = Doctor;
 //BUSQUEDA DE DOCTORES
-export class BuscarDoctor {
-    buscarDoctor(E) {
-        return;
+var BuscarDoctor = /** @class */ (function () {
+    function BuscarDoctor() {
     }
-    buscarTopDoctor() {
+    BuscarDoctor.prototype.buscarDoctor = function (E) {
         return;
-    }
-}
+    };
+    BuscarDoctor.prototype.buscarTopDoctor = function () {
+        return;
+    };
+    return BuscarDoctor;
+}());
+exports.BuscarDoctor = BuscarDoctor;
 // function buscarDoctores<T extends Nombrable>(lista: T[], nombre: string): T[] {
 //     let listaFiltrada: T[] = [];
 //     lista.forEach(element => {
