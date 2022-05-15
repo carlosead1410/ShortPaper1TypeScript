@@ -16,9 +16,9 @@ Elaborado por: Subgrupo 1 - Code Rebels
 
 |   Integrante               |    Commit|
 | :------------: | ------------ |
-|  Carlos Arriaga | 1. Creando el Repositorio de Typescript  </br>  2. Creando Las clases Observadores(auditoria) e HistoriaMedica. </br> 3. Caso de uso Suscribirse al Sistema de telemedicina. </br> 4. Caso de uso Suscripcion por diferentes medios de Pago. </br> 5. Caso de Uso Solicitar Cita con suscripccion activa y con suscripccion cancelada/bloqueada|
-|   Christian Sanchez |  1. Se creo el Modulo Cita, con las clases Cita, Telemedicina y Presencial </br>  2. Se creo Modulo de Historia Medica con las clases Registro Medico, Historial Medico </br> 3. Creacion del Modulo Notificaciones utilizando el Patron Observador </br> 4. Modificado los .js del modulo Patron Observador Auditoria. </br> 5. Caso de uso agendarCitaDoctor </br> 6. Caso de uso proceso completo de suscripcion, solicitud, agendar y respuesta de cita|
-|   Tadeo Vazquez|  1.Creando las clases [Doctor, Ubicacion, Cardiologo, Pediatra, Neurologo y BuscarDoctores] y las interfaces [Especialidad y Nombrable]</br>|
+|  Carlos Arriaga |[1. Caso de Uso Suscribirse al Sistema de Telemedicina](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/80d715481a63923fb65b297298ee4e1676aca80b "1. Caso de Uso Suscribirse al Sistema de Telemedicina")</br>[2. Caso de uso Suscripcion por diferentes medios de Pago](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/495d304673f5503f893bbdc38c8a43e3f8fb5f93 "2. Caso de uso Suscripcion por diferentes medios de Pago")</br>[3. Caso de Uso Solicitar Cita con suscripccion activa y con suscripccion cancelada/bloqueada](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/5a201f11534525e4c1f1fc7afcfb23eeb3f03607 "3. Caso de Uso Solicitar Cita con suscripccion activa y con suscripccion cancelada/bloqueada")|
+|   Christian Sanchez |[1. Caso de uso agendarCita](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/dc5e4395731e46db344dfd72608bcfb6abace490 "1. Caso de uso agendarCita")</br>[2. Creado el Caso de Uso Consulta Medica](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/cd03563fe4f763c236dd08697017857562e98f5b "3. Creado el Caso de Uso Consulta Medica")</br>[3. Caso de uso proceso completo de suscripcion, solicitud, agendar y respuesta de cita](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/759d5ef6504b138352814fcf5bbeb131914c3530 "3. Caso de uso proceso completo de suscripcion, solicitud, agendar y respuesta de cita")|
+|   Tadeo Vazquez| [1. TADEO - CASO DE USO: registro medico e historial de pacientes](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/62b44f7bdda0aa9f86dd43ce97098bdeabfa4784 "1. TADEO - CASO DE USO: registro medico e historial de pacientes") </br>[2. TADEO - CASO DE USO: registros de auditoria](https://github.com/carlosead1410/ShortPaper1TypeScript/commit/5124c1182eba85829f824aa1343da91388f84087 "2. TADEO - CASO DE USO: registros de auditoria")|
 
 
 <hr>
@@ -44,9 +44,11 @@ Este metodo **NO** agenda la cita.
   5. `cu_agendarCita();`
 Esta funcion representa la simulacion del proceso en el que el doctor agenda la cita con el paciente, es decir, crea la cita (con status pendiente) y le añade a la cita el paciente, el paciente manda su respuesta de la cita (status = Aceptada o Rechazada) y se actualiza el status de la cita.
 
-
   6. `cu_procesoCompletoCita();`
 Esta funcion representa la simulacion del proceso completo en el que un Paciente se suscribe al sistema, solicita una cita, se verifica su status de suscripccion, el doctor agenda la cita (La crea con un status = pendiente), el paciente acepta la cita (cambia el status de cita a aceptada y se le agrega el paciente a la cita).
+
+  7. `cu_consulta();`
+Esta funcion representa la simulacion del proceso completo en el que se solicita la cita, el doctor la agenda, el paciente la acepta y por ultimo, el doctor finaliza la cita y gener el registro medico para el paciente on los datos de su especialidad, tambien se genera el registro de auditoria del doctor (indicaria en una primera instancia que creo el Historial medico y despues cre creo un registro medico)
 
 Si desea probar un caso de uso en especifico usted debe descomentar la linea de codigo donde se llama a la funcion de ese caso de uso y ejecutar el proyecto con los siguientes comandos:
 
