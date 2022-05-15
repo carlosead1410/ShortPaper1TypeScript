@@ -60,3 +60,7 @@ Opcion 1:
 Opcion 2:
 
 	tsc-node main.ts
+
+
+###Observacion
+Los commits que se colocaron en la tabla fueron los ultimos commits con los que se completaron la implementacion de los casos de uso, esos casos de uso fueron implementados en varios commits.
