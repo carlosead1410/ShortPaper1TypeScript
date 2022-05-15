@@ -38,7 +38,7 @@ Esta funcion representa la simulacion del proceso en el que el paciente solicita
 Este metodo **NO** agenda la cita.
 
   4. `cu_solicitarCitaCancelada();`
-Esta funcion representa la simulacion del proceso en el que el paciente solicita una cita al doctor y su suscripccion esta **CANCELADA/BLOQUEADA** en el sistema, Deberia observar que al solicitar la cita se dispara una excepccion en el sistema que dice lo siguiente: <span style="color:red;">"El Paciente no tiene una suscripccion activa al sistema, NO podra solicitar citas"</span></br>
+Esta funcion representa la simulacion del proceso en el que el paciente solicita una cita al doctor y su suscripccion esta **CANCELADA/BLOQUEADA** en el sistema, Deberia observar que al solicitar la cita se dispara una excepccion en el sistema que dice lo siguiente: <span style="color:red;">'El Paciente CANCELO su suscripccion al sistema, no podra solicitar citas'</span></br>
 Este metodo **NO** agenda la cita.
 
   5. `cu_agendarCita();`
