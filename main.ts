@@ -129,7 +129,7 @@ function cu_solicitarCitaCancelada(): void {
     solicitud.verificarSuscripccion(paciente1);
 }
 
-//  cu_solicitarCitaCancelada();
+ cu_solicitarCitaCancelada();
 
 
 // CASO DE USO DOCTOR AGENDA CITA DEL PACIENTE Y PACIENTE ACEPTA LA CITA
@@ -205,7 +205,7 @@ function cu_consulta() {
     doctor1.crearRegistroMedico(paciente1, cita1)
     registro_auditoria.mostrarRegistros();
 }
-cu_consulta();
+// cu_consulta();
 
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
 function cu_procesoCompletoCita() {

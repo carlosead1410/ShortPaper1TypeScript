@@ -36,8 +36,11 @@ var Solicitud = /** @class */ (function () {
     };
     Solicitud.prototype.verificarSuscripccion = function (paciente) {
         var suscripcion_p = paciente.ObtenerPlan();
-        if (suscripcion_p.status != Suscripccion_1.StatusSuscripccion.Activa) {
-            throw new Error('El Paciente no tiene una suscripccion activa al sistema, NO podra solicitar citas');
+        if (suscripcion_p.status == Suscripccion_1.StatusSuscripccion.Cancelada) {
+            throw new Error('El Paciente CANCELO su suscripccion al sistema, no podra solicitar citas');
+        }
+        if (suscripcion_p.status == Suscripccion_1.StatusSuscripccion.Bloqueada) {
+            throw new Error('Su suscripccion fue BLOQUEADA por un mal uso del sistema, NO podra solicitar Citas');
         }
     };
     return Solicitud;

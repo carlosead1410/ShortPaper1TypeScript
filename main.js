@@ -87,7 +87,7 @@ function cu_solicitarCitaCancelada() {
     var solicitud = paciente1.solicitarCita(Solicitud_1.TipoCita.Presencial, doctor1, new Doctor_1.Peidatra());
     solicitud.verificarSuscripccion(paciente1);
 }
-//  cu_solicitarCitaCancelada();
+cu_solicitarCitaCancelada();
 // CASO DE USO DOCTOR AGENDA CITA DEL PACIENTE Y PACIENTE ACEPTA LA CITA
 function cu_agendarCita() {
     /*
@@ -142,7 +142,7 @@ function cu_consulta() {
     doctor1.crearRegistroMedico(paciente1, cita1);
     registro_auditoria.mostrarRegistros();
 }
-cu_consulta();
+// cu_consulta();
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
 function cu_procesoCompletoCita() {
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
