@@ -65,9 +65,8 @@ export class Paciente extends ObservableAuditoria {
         this.observador = this.observador;
     }
 
-    notify(): void {
-        let registrea;
-        this.observador.registrar(registrea);
+    notify(arreglo: Array<any>): void {
+        this.observador.registrar(arreglo);
     }
 
     verHistorialMedico(): void {
