@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paciente = void 0;
 var IVisitor_1 = require("../ModuloSuscripccion/IVisitor");
 var Suscripccion_1 = require("../ModuloSuscripccion/Suscripccion");
@@ -59,9 +59,8 @@ var Paciente = /** @class */ (function (_super) {
     Paciente.prototype.add = function (o) {
         this.observador = this.observador;
     };
-    Paciente.prototype.notify = function () {
-        var registrea;
-        this.observador.registrar(registrea);
+    Paciente.prototype.notify = function (arreglo) {
+        this.observador.registrar(arreglo);
     };
     Paciente.prototype.verHistorialMedico = function () {
         this._historia.mostrarRegistro();

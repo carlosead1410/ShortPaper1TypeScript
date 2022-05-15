@@ -3,7 +3,7 @@ import { RegistroMedico } from "../ModuloHistoriaMedica/HistorialMedico";
 import { FeedBack } from "./FeedBack";
 import { Paciente } from "../ModuloUsuarios/Paciente";
 import { ObservableNotificacion, ObservadorNotificacion } from "../ModuloNotificaciones/PatronObservador";
-import { Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
+import { Registro } from "../PatronObservadorAuditoria/ObservadorRegistro";
 import { Doctor, Especialidad } from "../ModuloUsuarios/Doctor";
 
 

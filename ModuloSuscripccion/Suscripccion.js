@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Suscripcion = exports.StatusSuscripccion = void 0;
 var MetodoPago_1 = require("./MetodoPago");
 var StatusSuscripccion;

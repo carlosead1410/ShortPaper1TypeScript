@@ -1,7 +1,7 @@
 import { IVisitor, PagoSuscripccion } from "../ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "../ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "../ModuloSuscripccion/Suscripccion";
-import { ObservableAuditoria, ObservadorRegistro, Registro_Actividad, Registro_Auditoria } from "../PatronObservadorAuditoria/ObservadorRegistro";
+import { ObservableAuditoria, ObservadorRegistro, Registro} from "../PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "../ModuloHistoriaMedica/HistorialMedico";
 import { Solicitud, TipoCita } from "../ModuloCita/Solicitud";
 import { Doctor, Especialidad } from "./Doctor";

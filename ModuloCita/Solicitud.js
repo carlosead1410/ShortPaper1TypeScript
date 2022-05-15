@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Solicitud = exports.TipoCita = void 0;
 var Suscripccion_1 = require("../ModuloSuscripccion/Suscripccion");
 var TipoCita;

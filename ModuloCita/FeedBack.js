@@ -3,7 +3,7 @@
     Clase FeedBack, despues de cada Cita se tiene
     un feedback del cliente hacia el doctor
 */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.FeedBack = void 0;
 var FeedBack = /** @class */ (function () {
     function FeedBack() {

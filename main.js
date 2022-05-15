@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Paciente_1 = require("./ModuloUsuarios/Paciente");
 var MetodoPago_1 = require("./ModuloSuscripccion/MetodoPago");
 var Suscripccion_1 = require("./ModuloSuscripccion/Suscripccion");
@@ -11,7 +11,7 @@ var Solicitud_1 = require("./ModuloCita/Solicitud");
 function cu_suscripccionPaciente() {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE\n");
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
     // METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA (Aqui el paciente selecciona el metodo de pago de Paypal y lo va pagar mensualmente)
@@ -28,7 +28,7 @@ function cu_suscripccionPaciente() {
 function cu_suscripccionPacienteTDC() {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE A TRAVES DE UNA TDC Y ANUAL\n");
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
     // METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA (Aqui el paciente selecciona el metodo de pago de TDC y lo va pagar ANUAL)
@@ -45,8 +45,8 @@ function cu_suscripccionPacienteTDC() {
 function cu_solicitarCitaActiva() {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION ACTIVA");
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
-    var registro_Auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
+    var registro_Auditoria = new ObservadorRegistro_1.Registro();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
     paciente1.suscribirse(new MetodoPago_1.TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, MetodoPago_1.TipoPlan.anual));
@@ -67,8 +67,8 @@ function cu_solicitarCitaActiva() {
 function cu_solicitarCitaCancelada() {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION CANCELADA O BLOQUEADA");
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
-    var registro_Auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
+    var registro_Auditoria = new ObservadorRegistro_1.Registro();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
     // paciente1.suscribirse(new TDC("Carlos A", "Banco Mercantil", new Date("2025-02-10"), 1234567890, 123, TipoPlan.anual));
@@ -96,8 +96,8 @@ function cu_agendarCita() {
 
     */
     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
-    var registro_auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
+    var registro_auditoria = new ObservadorRegistro_1.Registro();
     var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
     var cita1;
@@ -130,8 +130,8 @@ function cu_consulta() {
         En este punto el Paciente ya acepto y es el turno de ir a la cita
     */
     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
-    var registro_auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
+    var registro_auditoria = new ObservadorRegistro_1.Registro();
     var paciente1 = new Paciente_1.Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
     console.log(typeof paciente1._historia);
     var doctor1 = new Doctor_1.Doctor('Daniela Martinez', [new Doctor_1.Cardiologo()], new Doctor_1.Ubicacion('Venezuela', 'Miranda', 'San Antonio'), registro_auditoria);
@@ -146,8 +146,8 @@ cu_consulta();
 // CASO DE USO EL PACIENTE SE SUSCRIBE SOLICITA LA CITA Y EL DOCTOR LA AGENDA
 function cu_procesoCompletoCita() {
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    var registro_actividad = new ObservadorRegistro_1.Registro_Actividad();
-    var registro_Auditoria = new ObservadorRegistro_1.Registro_Auditoria();
+    var registro_actividad = new ObservadorRegistro_1.Registro();
+    var registro_Auditoria = new ObservadorRegistro_1.Registro();
     //Se crea al paciente
     var paciente1 = new Paciente_1.Paciente('Maria Puentes', 65, 'Administradora', ['1', '2', '3'], 'maria@gmail.com', 4545, registro_actividad);
     // METODO PARA SUSCRIBIRSE AL SISTEMA DE TELEMEDICINA (Aqui el paciente selecciona el metodo de pago de TDC y lo va pagar anualmente)

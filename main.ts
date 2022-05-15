@@ -2,7 +2,7 @@ import { Paciente } from "./ModuloUsuarios/Paciente";
 import { IVisitor, PagoSuscripccion } from "./ModuloSuscripccion/IVisitor";
 import { MetodoPago, Paypal, TDC, TipoPlan} from "./ModuloSuscripccion/MetodoPago";
 import { Suscripcion, StatusSuscripccion } from "./ModuloSuscripccion/Suscripccion";
-import { Registro_Actividad, Registro_Auditoria } from "./PatronObservadorAuditoria/ObservadorRegistro";
+import { Registro } from "./PatronObservadorAuditoria/ObservadorRegistro";
 import { HistorialMedico } from "./ModuloHistoriaMedica/HistorialMedico";
 import { Cita, StatusCita } from "./ModuloCita/Cita";
 import { Cardiologo, Doctor, Peidatra, Ubicacion, Especialidad } from "./ModuloUsuarios/Doctor";
@@ -16,7 +16,7 @@ function cu_suscripccionPaciente(): void {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE\n");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+    let registro_actividad: Registro = new Registro();
 
     //Se crea al paciente
     let paciente1: Paciente = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
@@ -42,7 +42,7 @@ function cu_suscripccionPacienteTDC(): void {
     console.log("ESTE ES EL CASO DE USO DE SUSCRIPCCION DE UN PACIENTE A TRAVES DE UNA TDC Y ANUAL\n");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
+    let registro_actividad: Registro = new Registro();
 
     //Se crea al paciente
     let paciente1: Paciente = new Paciente('Carlos Arriaga', 21, 'Estudiante', ['1', '2', '3'], 'arriaga1410@gmail.com', 1212, registro_actividad);
@@ -69,8 +69,8 @@ function cu_solicitarCitaActiva(): void {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION ACTIVA");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_Auditoria: Registro_Auditoria = new Registro_Auditoria();
+    let registro_actividad: Registro = new Registro();
+    let registro_Auditoria: Registro = new Registro();
 
 
     //Se crea al paciente
@@ -100,8 +100,8 @@ function cu_solicitarCitaCancelada(): void {
     console.log("****CASO DE USO SOLICITUD CITA CON SUSCRIPCCION CANCELADA O BLOQUEADA");
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_Auditoria: Registro_Auditoria = new Registro_Auditoria();
+    let registro_actividad: Registro = new Registro();
+    let registro_Auditoria: Registro = new Registro();
 
 
     //Se crea al paciente
@@ -142,8 +142,8 @@ function cu_agendarCita() {
     */
 
     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();
+    let registro_actividad: Registro = new Registro();
+    let registro_auditoria: Registro = new Registro();
 
 
     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
@@ -188,8 +188,8 @@ function cu_consulta() {
         En este punto el Paciente ya acepto y es el turno de ir a la cita
     */
     // LLEVAR EL REGISTRO DE AUDITORIA Y ACTIVIDAD DEL PACIENTE Y DOCTOR
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_auditoria: Registro_Auditoria = new Registro_Auditoria();
+    let registro_actividad: Registro = new Registro();
+    let registro_auditoria: Registro = new Registro();
 
 
     let paciente1: Paciente = new Paciente('Adrian Herrera', 42, 'Contador', ['1', '2', '3'], 'aa@gmail.com', 1212, registro_actividad);
@@ -211,8 +211,8 @@ cu_consulta();
 function cu_procesoCompletoCita() {
 
     //ESTE OBJETO ES UNICO PARA LLEVAR TODO EL REGISTRO DE ACTIVIDADES DE LOS PACIENTES
-    let registro_actividad: Registro_Actividad = new Registro_Actividad();
-    let registro_Auditoria: Registro_Auditoria = new Registro_Auditoria();
+    let registro_actividad: Registro = new Registro();
+    let registro_Auditoria: Registro = new Registro();
 
     //Se crea al paciente
     let paciente1: Paciente = new Paciente('Maria Puentes', 65, 'Administradora', ['1', '2', '3'], 'maria@gmail.com', 4545, registro_actividad);

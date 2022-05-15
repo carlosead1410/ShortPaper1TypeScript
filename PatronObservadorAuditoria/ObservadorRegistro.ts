@@ -3,29 +3,14 @@ export interface ObservadorRegistro{
     mostrarRegistros():void;
 }
 
-export class Registro_Auditoria implements ObservadorRegistro{
+export class Registro implements ObservadorRegistro{
     registro = new Array();
     registrar(registroA:any): void{
         
         this.registro.push(registroA);
     }
     mostrarRegistros(): void {
-        console.log("****   REGISTRO DE AUDITORIA   ****\n");
-        for(let regist of this.registro){
-            console.log(regist);
-            console.log("\n");
-        }
-    }
-}
-
-export class Registro_Actividad implements ObservadorRegistro{
-    registro = new Array();
-    registrar(registroA:any): void{
-    
-        this.registro.push(registroA);
-    }
-    mostrarRegistros(): void {
-        console.log("****   REGISTRO DE ACTIVIDAD   ****\n");
+        console.log("****   REGISTRO ****\n");
         for(let regist of this.registro){
             console.log(regist);
             console.log("\n");
